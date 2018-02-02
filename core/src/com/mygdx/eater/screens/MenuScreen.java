@@ -9,6 +9,8 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.mygdx.eater.Eater;
+import com.mygdx.eater.actors.menu.CharactersButton;
+import com.mygdx.eater.actors.menu.NewGameButton;
 
 /**
  * Created by marat on 25.01.18.
@@ -18,7 +20,6 @@ public class MenuScreen implements Screen {
     private Eater game;
 
     Stage stage;
-    private Button.ButtonStyle button_style_play;
     private Button btn_new_game;
     private Button.ButtonStyle button_style_characters;
     private Button button_characters;
@@ -74,41 +75,27 @@ public class MenuScreen implements Screen {
 
 
     private void createButtons() {
-        button_style_play = new Button.ButtonStyle();
-        button_style_play.up = game.skin.getDrawable("play");
-        button_style_play.down = game.skin.getDrawable("play");
-
-        btn_new_game = new Button(button_style_play);
-        btn_new_game.setSize(200, 200);
-        btn_new_game.setPosition(stage.getWidth()/2-100, 0);
-        btn_new_game.addListener(new InputListener() {
-            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                game.setScreen(new GameScreen(game));
-                dispose();
-                return true;
-            }
-        });
-
+        btn_new_game = new NewGameButton((int) (stage.getWidth()/2 - 100), 0, 200, 200, new NewGameButtonListener());
         stage.addActor(btn_new_game);
 
-        button_style_characters = new Button.ButtonStyle();
-        button_style_characters.up = game.skin.getDrawable("menu");
-        button_style_characters.down = game.skin.getDrawable("menu");
-
-        button_characters = new Button(button_style_characters);
-        button_characters.setSize(200, 200);
-        button_characters.setPosition(10, 0);
-        button_characters.addListener(new InputListener() {
-            @Override
-            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                game.setScreen(new CharacterScreens(game));
-                dispose();
-                return true;
-
-            }
-        });
-
+        button_characters = new CharactersButton(10, 0, 200, 200, new CharactersMenuButtonListener());
         stage.addActor(button_characters);
     }
+
+    private class NewGameButtonListener implements NewGameButton.NewGameListener {
+        public void onStart() {
+            game.setScreen(new GameScreen(game));
+            dispose();
+        }
+    }
+
+    private class CharactersMenuButtonListener implements CharactersButton.CharactersMenuListener {
+        @Override
+        public void onCharactersMenu() {
+            game.setScreen(new CharacterScreens(game));
+            dispose();
+        }
+    }
+
 
 }
