@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.mygdx.eater.Eater;
+import com.mygdx.eater.actors.Character;
 
 /**
  * Created by marat on 28.01.18.
@@ -21,8 +22,8 @@ public class GameScreen implements Screen {
         Gdx.input.setInputProcessor(stage);
 
         createButtons();
+        createGame();
     }
-
     @Override
     public void show() {
 
@@ -67,6 +68,11 @@ public class GameScreen implements Screen {
 
     private void createButtons() {
 
+    }
+
+    private void createGame() {
+        Character character = new Character();
+        stage.addActor(character);
     }
 
 }

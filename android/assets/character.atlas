@@ -1,0 +1,26 @@
+character.png
+size: 100, 102
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+face_bottom50
+  rotate: false
+  xy: 0, 0
+  size: 100, 50
+  orig: 100, 50
+  offset: 0, 0
+  index: -1
+face_middle
+  rotate: false
+  xy: 0, 50
+  size: 100, 1
+  orig: 100, 1
+  offset: 0, 0
+  index: -1
+face_top
+  rotate: false
+  xy: 0, 51
+  size: 100, 51
+  orig: 100, 51
+  offset: 0, 0
+  index: -1

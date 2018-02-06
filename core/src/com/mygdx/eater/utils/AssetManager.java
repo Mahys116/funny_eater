@@ -7,11 +7,15 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
  */
 
 public class AssetManager {
-    private static TextureAtlas atlas;
 
     public static TextureAtlas getAtlas() {
-        atlas = new TextureAtlas("eat.atlas");
+        TextureAtlas atlas = new TextureAtlas("eat.atlas");
         return atlas;
+    }
+
+    public static TextureAtlas getFace() {
+        TextureAtlas character = new TextureAtlas("character.atlas");
+        return character;
     }
 
 }
