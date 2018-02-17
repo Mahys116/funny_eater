@@ -5,12 +5,10 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.utils.DragListener;
 import com.mygdx.eater.utils.AssetManager;
+import com.mygdx.eater.utils.GameState;
 
 /**
  * Created by marat on 05.02.18.
@@ -40,7 +38,8 @@ public class Character extends Actor {
     @Override
     public void draw(Batch batch, float parentAlpha) {
         if(Gdx.input.isTouched()) {
-            if ((Gdx.graphics.getHeight() - Gdx.input.getY()) <= (vertical_position - size/2)) {
+            if ( !GameState.getInstance().isPaused() &&
+                    (Gdx.graphics.getHeight() - Gdx.input.getY()) <= (vertical_position - size/2)) {
                 x = Gdx.input.getX();
                 y = Gdx.graphics.getHeight() - Gdx.input.getY();
             }
