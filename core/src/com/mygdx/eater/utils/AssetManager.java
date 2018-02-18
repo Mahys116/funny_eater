@@ -18,4 +18,9 @@ public class AssetManager {
         return character;
     }
 
+    public static TextureAtlas getFood() {
+        TextureAtlas food = new TextureAtlas("food.atlas");
+        return food;
+    }
+
 }

@@ -11,6 +11,7 @@ public class GameState {
     public static final int GAME_RUNNING = 1;
     public static final int GAME_PAUSED = 2;
     public static final int GAME_OVER = 5;
+    private float speed;
 
     public static GameState getInstance() {
         GameState localInstance = instance;
@@ -47,4 +48,15 @@ public class GameState {
 
     public boolean isPaused() { return (state == GAME_PAUSED);}
 
+    public void setSpeed(float speed) {
+        this.speed = speed;
+    }
+
+    public float getSpeed() {
+        return speed;
+    }
+
+    public void incSpeed(int i) {
+        speed+=i;
+    }
 }

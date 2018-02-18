@@ -23,7 +23,7 @@ public class Character extends Actor {
     float x;
     float y;
 
-    public Character() {
+    public Character(int characterSize) {
         TextureAtlas atlas = new AssetManager().getFace();
         Skin skin = new Skin();
         skin.addRegions(atlas);
@@ -31,12 +31,22 @@ public class Character extends Actor {
         face_top = skin.getRegion("face_top");
         face_middle = skin.getRegion("face_middle");
         face_bottom = skin.getRegion("face_bottom50");
-        size = Gdx.graphics.getWidth()/5;
+        size = characterSize;
         vertical_position = size*2;
     }
 
     @Override
     public void draw(Batch batch, float parentAlpha) {
+        batch.draw(face_middle, getX()-size/2, getY(), size,vertical_position-getY());
+    }
+
+    public void draw_top(Batch batch){
+        batch.draw(face_bottom,getX()-size/2,(float) getY(), size, size/2);
+        batch.draw(face_top, getX()-size/2,vertical_position, size, size/2);
+    }
+
+    @Override
+    public void act(float delta) {
         if(Gdx.input.isTouched()) {
             if ( !GameState.getInstance().isPaused() &&
                     (Gdx.graphics.getHeight() - Gdx.input.getY()) <= (vertical_position - size/2)) {
@@ -44,14 +54,6 @@ public class Character extends Actor {
                 y = Gdx.graphics.getHeight() - Gdx.input.getY();
             }
         }
-        batch.draw(face_top, getX()-size/2,vertical_position, size, size/2);
-        batch.draw(face_middle, getX()-size/2, getY(), size,vertical_position-getY());
-        batch.draw(face_bottom,getX()-size/2,(float) getY(), size, size/2);
-    }
-
-    @Override
-    public void act(float delta) {
-        super.act(delta);
     }
 
     @Override
