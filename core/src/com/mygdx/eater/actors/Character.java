@@ -1,10 +1,10 @@
 package com.mygdx.eater.actors;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.mygdx.eater.utils.AssetManager;
@@ -20,8 +20,13 @@ public class Character extends Actor {
     final TextureRegion face_top;
     final TextureRegion face_bottom;
     final TextureRegion face_middle;
+    final Rectangle mouth;
+    final Rectangle tooth_l;
+    final Rectangle tooth_r;
     float x;
     float y;
+
+
 
     public Character(int characterSize) {
         TextureAtlas atlas = new AssetManager().getFace();
@@ -33,6 +38,19 @@ public class Character extends Actor {
         face_bottom = skin.getRegion("face_bottom50");
         size = characterSize;
         vertical_position = size*2;
+
+        mouth = new Rectangle();
+        mouth.setSize(size-2, size/2);
+        mouth.setPosition(getX()-size/2+1, getY());
+
+        tooth_l = new Rectangle();
+        tooth_l.setSize( 1, size/2);
+        tooth_l.setPosition(getX()-size/2, getY());
+
+        tooth_r = new Rectangle();
+        tooth_r.setSize( 1, size/2);
+        tooth_r.setPosition(getX()+size/2, getY());
+
     }
 
     @Override
@@ -52,8 +70,12 @@ public class Character extends Actor {
                     (Gdx.graphics.getHeight() - Gdx.input.getY()) <= (vertical_position - size/2)) {
                 x = Gdx.input.getX();
                 y = Gdx.graphics.getHeight() - Gdx.input.getY();
+                mouth.setPosition(getX()-size/2+1, getY());
+                tooth_l.setPosition(getX()-size/2, getY());
+                tooth_r.setPosition(getX()+size/2, getY());
             }
         }
+
     }
 
     @Override

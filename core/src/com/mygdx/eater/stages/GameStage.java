@@ -9,9 +9,6 @@ import com.mygdx.eater.actors.menu.PauseButton;
 import com.mygdx.eater.actors.menu.ResumeButton;
 import com.mygdx.eater.utils.GameState;
 
-import static com.badlogic.gdx.utils.TimeUtils.millis;
-
-
 public class GameStage extends Stage {
     private Character character;
     private PauseButton btn_pause;
@@ -64,7 +61,7 @@ public class GameStage extends Stage {
         if (GameState.getInstance().isPaused()) return;
         food_delta += delta;
         if (food_delta > ((getWidth()/8)/GameState.getInstance().getSpeed())) {
-            Food food = new Food((int) getWidth()/10,(int) (Gdx.graphics.getWidth()*2/5-getWidth()/10));
+            Food food = new Food((int) getWidth()/10,(int) (Gdx.graphics.getWidth()*2/5-getWidth()/10), character);
             addActor(food);
             food_delta = 0;
             GameState.getInstance().incSpeed(1);
