@@ -1,5 +1,6 @@
 package com.mygdx.eater.actors.menu;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.math.Rectangle;
@@ -18,6 +19,8 @@ public class Label extends Actor {
         setPosition(x,y);
         font = AssetManager.getFont();
         this.text = text;
+        font.getData().setScale(4);
+        font.setColor(Color.BLACK);
     }
 
     @Override
