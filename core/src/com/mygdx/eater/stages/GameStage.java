@@ -7,6 +7,7 @@ import com.mygdx.eater.actors.Character;
 import com.mygdx.eater.actors.Food;
 import com.mygdx.eater.actors.menu.PauseButton;
 import com.mygdx.eater.actors.menu.ResumeButton;
+import com.mygdx.eater.actors.menu.ScoreLabel;
 import com.mygdx.eater.utils.GameState;
 
 public class GameStage extends Stage {
@@ -14,6 +15,7 @@ public class GameStage extends Stage {
     private Character character;
     private PauseButton btn_pause;
     private ResumeButton btn_resume;
+    private ScoreLabel lbl_score;
     private float food_delta;
     private int score;
     private float hunger;
@@ -42,6 +44,9 @@ public class GameStage extends Stage {
         score = 0;
         hunger = 7;
         GameState.getInstance().setSpeed(getWidth()/8);
+
+        lbl_score = new ScoreLabel((int) (getWidth()/2), (int) getHeight()/2);
+        addActor(lbl_score);
     }
 
     private void clearGameMenu() {
@@ -75,6 +80,7 @@ public class GameStage extends Stage {
         if (hunger <= 0) {
             GameState.getInstance().end();
         }
+        lbl_score.setScore(score);
     }
 
     private class PauseButtonListener implements PauseButton.PauseListener {
