@@ -1,5 +1,6 @@
 package com.mygdx.eater.utils;
 
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 
 /**
@@ -21,6 +22,11 @@ public class AssetManager {
     public static TextureAtlas getFood() {
         TextureAtlas food = new TextureAtlas("food.atlas");
         return food;
+    }
+
+    public static BitmapFont getFont() {
+        BitmapFont font = new BitmapFont();
+        return font;
     }
 
 }

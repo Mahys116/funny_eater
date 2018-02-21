@@ -46,7 +46,7 @@ public class GameState {
         return state;
     }
 
-    public boolean isPaused() { return (state == GAME_PAUSED);}
+    public boolean isPaused() { return (state == GAME_PAUSED || state == GAME_OVER);}
 
     public void setSpeed(float speed) {
         this.speed = speed;

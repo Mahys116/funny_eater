@@ -40,7 +40,7 @@ public class Character extends Actor {
         vertical_position = size*2;
 
         mouth = new Rectangle();
-        mouth.setSize(size-2, size/2);
+        mouth.setSize(size-2, size/3);
         mouth.setPosition(getX()-size/2+1, getY());
 
         tooth_l = new Rectangle();

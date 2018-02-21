@@ -10,6 +10,7 @@ import com.mygdx.eater.utils.AssetManager;
 import com.mygdx.eater.utils.GameState;
 import com.badlogic.gdx.math.Rectangle;
 
+import java.lang.reflect.Method;
 import java.util.Random;
 
 public class Food extends Actor {
@@ -26,7 +27,13 @@ public class Food extends Actor {
     final Rectangle block;
     private Character character;
 
-    public Food(int size, int y_start,Character face) {
+    public interface IncrementWrapper {
+        public void incrementScore(int score);
+    }
+    private Food.IncrementWrapper incrementWrapper;
+
+
+    public Food(int size, int y_start, Character face, Food.IncrementWrapper incrementWrapper) {
         character = face;
         TextureAtlas atlas = new AssetManager().getFood();
         Skin skin = new Skin();
@@ -41,6 +48,8 @@ public class Food extends Actor {
         block = new Rectangle();
         block.setSize( size, size);
         block.setPosition(-size, y_start);
+
+        this.incrementWrapper = incrementWrapper;
 
         state = ROLL;
     }
@@ -64,7 +73,7 @@ public class Food extends Actor {
             }else if (block.overlaps(character.tooth_r)) {
                 state = BLOCK_RIGHT;
             }else if (block.overlaps(character.mouth)) {
-
+                incrementWrapper.incrementScore(getScore());
                 remove();
             }
             setX(getX() + GameState.getInstance().getSpeed() * delta);
