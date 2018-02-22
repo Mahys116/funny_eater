@@ -38,6 +38,8 @@ public class Character extends Actor {
         face_bottom = skin.getRegion("face_bottom50");
         size = characterSize;
         vertical_position = size*2;
+        x = Gdx.graphics.getWidth()/2;
+        y = vertical_position - size;
 
         mouth = new Rectangle();
         mouth.setSize(size-2, size/3);

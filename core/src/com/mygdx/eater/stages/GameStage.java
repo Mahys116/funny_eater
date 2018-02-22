@@ -1,6 +1,7 @@
 package com.mygdx.eater.stages;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.mygdx.eater.actors.Character;
@@ -24,18 +25,19 @@ public class GameStage extends Stage {
 
     public GameStage(ScreenViewport screen) {
         super(screen);
-        createGame();
-        createGameMenu();
+        initGameParams();
+        createGameElements();
+        showGameMenu();
     }
 
-    private void createGameMenu() {
+    private void showGameMenu() {
         btn_pause.setVisible(true);
 
         btn_resume.setVisible(false);
         lbl_game_paused.setVisible(false);
     }
 
-    private void createPauseMenu() {
+    private void showPauseMenu() {
         btn_pause.setVisible(false);
 
         btn_resume.setVisible(true);
@@ -52,14 +54,9 @@ public class GameStage extends Stage {
 
     }
 
-    private void createGame() {
+    private void createGameElements() {
         character = new Character(Gdx.graphics.getWidth()/5);
         addActor(character);
-
-        food_delta = 0;
-        score = 0;
-        hunger = 7;
-        GameState.getInstance().setSpeed(getWidth()/8);
 
         lbl_score = new ScoreLabel((int) (getWidth()/2), (int) getHeight()/2);
         addActor(lbl_score);
@@ -73,6 +70,14 @@ public class GameStage extends Stage {
         addActor(lbl_game_paused);
         addActor(btn_pause);
         addActor(btn_resume);
+    }
+
+    private void initGameParams() {
+        food_delta = 0;
+        score = 0;
+        hunger = 7;
+        GameState.getInstance().setSpeed(200);
+
     }
 
     @Override
@@ -97,6 +102,10 @@ public class GameStage extends Stage {
         }
         if (hunger <= 0) {
             GameState.getInstance().end();
+            Preferences prefs = Gdx.app.getPreferences("preferences");
+            int high_score = prefs.getInteger("high_score", 0);
+            if (high_score < score) prefs.putInteger("high_score", score);
+            prefs.flush();
             createGameOverMenu();
         }
         lbl_score.setScore(score);
@@ -105,14 +114,14 @@ public class GameStage extends Stage {
     private class PauseButtonListener implements PauseButton.PauseListener {
         public void onPause() {
             GameState.getInstance().pause();
-            createPauseMenu();
+            showPauseMenu();
         }
     }
 
     private class ResumeButtonListener implements ResumeButton.ResumeListener {
         public void onResume() {
             GameState.getInstance().resume();
-            createGameMenu();
+            showGameMenu();
         }
     }
 
