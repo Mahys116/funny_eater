@@ -6,6 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.mygdx.eater.actors.Character;
 import com.mygdx.eater.actors.Food;
+import com.mygdx.eater.actors.menu.HungerLevel;
 import com.mygdx.eater.actors.menu.Label;
 import com.mygdx.eater.actors.menu.PauseButton;
 import com.mygdx.eater.actors.menu.ResumeButton;
@@ -22,6 +23,7 @@ public class GameStage extends Stage {
     private float food_delta;
     private int score;
     private float hunger;
+    private HungerLevel hunger_level;
 
     public GameStage(ScreenViewport screen) {
         super(screen);
@@ -60,12 +62,16 @@ public class GameStage extends Stage {
 
         lbl_score = new ScoreLabel((int) (getWidth()/2), (int) getHeight()/2);
         addActor(lbl_score);
+        hunger_level = new HungerLevel(getWidth()/4, getHeight()-getWidth()/10-10, getWidth()/2, getWidth()/10, hunger);
+        addActor(hunger_level);
 
         // Menus
-        lbl_game_paused = new Label((int) (getWidth()/2), (int) (getHeight()*3/4), "Paused");
-        btn_pause = new PauseButton((int) (getWidth() - 200), (int) getHeight()-200, 200, 200, new GameStage.PauseButtonListener());
+        btn_pause = new PauseButton((int) (getWidth() - getWidth()/10), (int) (getHeight()-getWidth()/10),(int) (getWidth()/10), (int) (getWidth()/10), new GameStage.PauseButtonListener());
 
-        btn_resume = new ResumeButton((int) (getWidth() - 200), (int) getHeight() - 200, 200, 200, new GameStage.ResumeButtonListener());
+        lbl_game_paused = new Label((int) (getWidth()/2), (int) (getHeight()*3/4), "Paused");
+        btn_resume = new ResumeButton((int) (getWidth() - getWidth()/10), (int) (getHeight()-getWidth()/10),(int) (getWidth()/10), (int) (getWidth()/10), new GameStage.ResumeButtonListener());
+
+
 
         addActor(lbl_game_paused);
         addActor(btn_pause);
@@ -109,6 +115,7 @@ public class GameStage extends Stage {
             createGameOverMenu();
         }
         lbl_score.setScore(score);
+        hunger_level.setLevel(hunger);
     }
 
     private class PauseButtonListener implements PauseButton.PauseListener {
