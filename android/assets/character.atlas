@@ -1,9 +1,9 @@
 character.png
-size: 100, 102
+size: 100, 251
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
-face_bottom50
+face_bottom
   rotate: false
   xy: 0, 0
   size: 100, 50
@@ -22,5 +22,19 @@ face_top
   xy: 0, 51
   size: 100, 51
   orig: 100, 51
+  offset: 0, 0
+  index: -1
+skull_bottom
+  rotate: false
+  xy: 0, 102
+  size: 100, 50
+  orig: 100, 50
+  offset: 0, 0
+  index: -1
+skull_top
+  rotate: false
+  xy: 0, 152
+  size: 100, 99
+  orig: 100, 99
   offset: 0, 0
   index: -1
