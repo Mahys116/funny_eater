@@ -17,7 +17,7 @@ public class GameScreen implements Screen {
 
     public GameScreen(Eater game) {
         this.game = game;
-        stage = new GameStage(new ScreenViewport());
+        stage = new GameStage(new ScreenViewport(), game);
         Gdx.input.setInputProcessor(stage);
     }
     @Override

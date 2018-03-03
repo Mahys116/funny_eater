@@ -19,12 +19,12 @@ public class ResumeButton extends Button {
         skin = new Skin();
         skin.addRegions(atlas);
         Button.ButtonStyle style = new Button.ButtonStyle();
-        style.up = skin.getDrawable("back");
-        style.down = skin.getDrawable("back");
+        style.up = skin.getDrawable("play");
+        style.down = skin.getDrawable("play");
 
         setStyle(style);
         setSize(width, height);
-        setPosition(x, y);
+        setPosition(x - width/2, y - height/2);
 
         this.listener = listener;
         addListener(new ClickListener() {

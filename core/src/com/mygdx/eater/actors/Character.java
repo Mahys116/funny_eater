@@ -62,7 +62,7 @@ public class Character extends Actor {
 
     public void draw_top(Batch batch){
         batch.draw(face_bottom,getX()-size/2,(float) getY(), size, size/2);
-        batch.draw(face_top, getX()-size/2,vertical_position-size/5, size, size);
+        batch.draw(face_top, getX()-size/2,vertical_position, size, size);
     }
 
     @Override

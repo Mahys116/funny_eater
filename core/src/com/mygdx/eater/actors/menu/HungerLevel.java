@@ -35,6 +35,11 @@ public class HungerLevel extends Actor {
     }
 
     public void setLevel(float level) {
-        this.level = level;
+        if (level < 0) {
+            this.level = 0;
+        } else {
+            this.level = level;
+        }
+
     }
 }

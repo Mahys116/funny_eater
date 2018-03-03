@@ -29,4 +29,8 @@ public class Label extends Actor {
         font.draw(batch, text, getX(), getY());
     }
 
+    public void setText(String text) {
+        this.text = text;
+    }
+
 }

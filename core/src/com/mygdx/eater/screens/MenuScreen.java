@@ -89,14 +89,14 @@ public class MenuScreen implements Screen {
         stage.addActor(button_characters);
     }
 
-    private class NewGameButtonListener implements NewGameButton.NewGameListener {
+    public class NewGameButtonListener implements NewGameButton.NewGameListener {
         public void onStart() {
             game.setScreen(new GameScreen(game));
             dispose();
         }
     }
 
-    private class CharactersMenuButtonListener implements CharactersButton.CharactersMenuListener {
+    public class CharactersMenuButtonListener implements CharactersButton.CharactersMenuListener {
         @Override
         public void onCharactersMenu() {
             game.setScreen(new CharacterScreens(game));

@@ -4,17 +4,24 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.mygdx.eater.Eater;
 import com.mygdx.eater.actors.Character;
 import com.mygdx.eater.actors.Food;
+import com.mygdx.eater.actors.menu.CharactersButton;
 import com.mygdx.eater.actors.menu.HungerLevel;
 import com.mygdx.eater.actors.menu.Label;
+import com.mygdx.eater.actors.menu.NewGameButton;
 import com.mygdx.eater.actors.menu.PauseButton;
 import com.mygdx.eater.actors.menu.ResumeButton;
 import com.mygdx.eater.actors.menu.ScoreLabel;
+import com.mygdx.eater.screens.CharacterScreens;
+import com.mygdx.eater.screens.GameScreen;
+import com.mygdx.eater.screens.MenuScreen;
 import com.mygdx.eater.utils.GameState;
 
 public class GameStage extends Stage {
     private static final int HUNGER_MAX = 10;
+    private Eater game;
     private Character character;
     private PauseButton btn_pause;
     private ResumeButton btn_resume;
@@ -24,9 +31,15 @@ public class GameStage extends Stage {
     private int score;
     private float hunger;
     private HungerLevel hunger_level;
+    private CharactersButton btn_character;
+    private NewGameButton btn_new_game;
+    private Label lbl_game_end;
+    private Label lbl_game_end_highscore;
+    private Label lbl_game_end_score;
 
-    public GameStage(ScreenViewport screen) {
+    public GameStage(ScreenViewport screen, Eater game) {
         super(screen);
+        this.game = game;
         initGameParams();
         createGameElements();
         showGameMenu();
@@ -37,6 +50,12 @@ public class GameStage extends Stage {
 
         btn_resume.setVisible(false);
         lbl_game_paused.setVisible(false);
+
+        btn_character.setVisible(false);
+        btn_new_game.setVisible(false);
+        lbl_game_end.setVisible(false);
+        lbl_game_end_highscore.setVisible(false);
+        lbl_game_end_score.setVisible(false);
     }
 
     private void showPauseMenu() {
@@ -44,46 +63,72 @@ public class GameStage extends Stage {
 
         btn_resume.setVisible(true);
         lbl_game_paused.setVisible(true);
+
+        btn_character.setVisible(false);
+        btn_new_game.setVisible(false);
+        lbl_game_end.setVisible(false);
+        lbl_game_end_highscore.setVisible(false);
+        lbl_game_end_score.setVisible(false);
     }
 
     private void  createGameOverMenu() {
-        Label gameEnd = new Label((int) (getWidth()/2), (int) (getHeight()*3/4), "Game Over");
-        addActor(gameEnd);
-
         btn_pause.setVisible(false);
+
         btn_resume.setVisible(false);
         lbl_game_paused.setVisible(false);
 
+        btn_character.setVisible(true);
+        btn_new_game.setVisible(true);
+        lbl_game_end.setVisible(true);
+        lbl_game_end_highscore.setVisible(true);
+        lbl_game_end_score.setVisible(true);
+
+        Preferences prefs = Gdx.app.getPreferences("preferences");
+        int high_score = prefs.getInteger("high_score", 0);
+        lbl_game_end_score.setText("Score: "+ String.format("%d", score));
+        lbl_game_end_highscore.setText("Highscore: "+ String.format("%d", high_score));
     }
 
     private void createGameElements() {
         character = new Character(Gdx.graphics.getWidth()/5);
         addActor(character);
 
-        lbl_score = new ScoreLabel((int) (getWidth()/2), (int) getHeight()/2);
+        int size = (int) (getWidth() / 10);
+
+        lbl_score = new ScoreLabel((int) (getWidth()/2), (int) getHeight()*3/4);
         addActor(lbl_score);
-        hunger_level = new HungerLevel(getWidth()/4, getHeight()-getWidth()/10-10, getWidth()/2, getWidth()/10, hunger);
+        hunger_level = new HungerLevel(getWidth()/4, getHeight()-size-10, getWidth()/2, size, hunger);
         addActor(hunger_level);
 
         // Menus
-        btn_pause = new PauseButton((int) (getWidth() - getWidth()/10), (int) (getHeight()-getWidth()/10),(int) (getWidth()/10), (int) (getWidth()/10), new GameStage.PauseButtonListener());
+        btn_pause = new PauseButton((int) (getWidth() - size), (int) (getHeight() - size), size, size, new GameStage.PauseButtonListener());
 
-        lbl_game_paused = new Label((int) (getWidth()/2), (int) (getHeight()*3/4), "Paused");
-        btn_resume = new ResumeButton((int) (getWidth() - getWidth()/10), (int) (getHeight()-getWidth()/10),(int) (getWidth()/10), (int) (getWidth()/10), new GameStage.ResumeButtonListener());
+        lbl_game_paused = new Label((int) (getWidth()/2-size), (int) (getHeight()/2+size), "Paused");
+        btn_resume = new ResumeButton((int) (getWidth()/2), (int) (getHeight()/2), size, size, new GameStage.ResumeButtonListener());
 
-
+        lbl_game_end = new Label((int) (getWidth()/2-size), (int) (getHeight()/2+size), "Game Over");
+        btn_new_game = new NewGameButton((int) (getWidth()/2 - size), 0, size*2, size*2, new GameStage.NewGameButtonListener());
+        btn_character = new CharactersButton(size/2, 0, size, size, new GameStage.CharactersMenuButtonListener());
+        lbl_game_end_score = new Label((int) (getWidth()/2-size), (int) (getHeight()/2), "");
+        lbl_game_end_highscore = new Label((int) (getWidth()/2-size), (int) (getHeight()/2-size), "20");
 
         addActor(lbl_game_paused);
         addActor(btn_pause);
         addActor(btn_resume);
+        addActor(btn_new_game);
+        addActor(btn_character);
+        addActor(lbl_game_end);
+        addActor(lbl_game_end_score);
+        addActor(lbl_game_end_highscore);
+
     }
 
     private void initGameParams() {
         food_delta = 0;
         score = 0;
         hunger = 7;
+        GameState.getInstance().resume();
         GameState.getInstance().setSpeed(200);
-
     }
 
     @Override
@@ -137,6 +182,22 @@ public class GameStage extends Stage {
             hunger += hungerRate;
             if (hunger > HUNGER_MAX) { hunger = 10; }
             if (hungerRate > 0) score += hungerRate;
+        }
+    }
+
+
+    private class NewGameButtonListener implements NewGameButton.NewGameListener {
+        public void onStart() {
+            initGameParams();
+            showGameMenu();
+        }
+    }
+
+    private class CharactersMenuButtonListener implements CharactersButton.CharactersMenuListener {
+        @Override
+        public void onCharactersMenu() {
+            game.setScreen(new CharacterScreens(game));
+            dispose();
         }
     }
 
