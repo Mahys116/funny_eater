@@ -3,30 +3,22 @@ package com.mygdx.eater.utils;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 
-/**
- * Created by marat on 02.02.18.
- */
-
 public class AssetManager {
 
     public static TextureAtlas getAtlas() {
-        TextureAtlas atlas = new TextureAtlas("eat.atlas");
-        return atlas;
+        return new TextureAtlas("eat.atlas");
     }
 
     public static TextureAtlas getFace() {
-        TextureAtlas character = new TextureAtlas("character.atlas");
-        return character;
+        return new TextureAtlas("character.atlas");
     }
 
     public static TextureAtlas getFood() {
-        TextureAtlas food = new TextureAtlas("food.atlas");
-        return food;
+        return new TextureAtlas("food.atlas");
     }
 
     public static BitmapFont getFont() {
-        BitmapFont font = new BitmapFont();
-        return font;
+        return new BitmapFont();
     }
 
 }

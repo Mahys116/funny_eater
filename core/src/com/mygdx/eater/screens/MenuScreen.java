@@ -1,11 +1,8 @@
 package com.mygdx.eater.screens;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
@@ -13,26 +10,24 @@ import com.mygdx.eater.Eater;
 import com.mygdx.eater.actors.menu.CharactersButton;
 import com.mygdx.eater.actors.menu.Label;
 import com.mygdx.eater.actors.menu.NewGameButton;
+import com.mygdx.eater.utils.PreferencesManager;
 
-/**
- * Created by marat on 25.01.18.
- */
 
 public class MenuScreen implements Screen {
     private Eater game;
 
-    Stage stage;
+    private Stage stage;
     private Button btn_new_game;
-    private Button.ButtonStyle button_style_characters;
     private Button button_characters;
+    private int size;
 
     public MenuScreen(final Eater game) {
         this.game = game;
         stage = new Stage(new ScreenViewport());
         Gdx.input.setInputProcessor(stage);
+        size = (int) (stage.getWidth()/10);
 
-        Preferences prefs = Gdx.app.getPreferences("preferences");
-        int high_score = prefs.getInteger("high_score", 0);
+        int high_score = PreferencesManager.getHighScore();
         Gdx.app.log("score", String.format("%d", high_score));
         Label lbl_score = new Label((int) (stage.getWidth()/2), (int) (stage.getHeight()/2), String.format("%d", high_score));
         stage.addActor(lbl_score);
@@ -82,10 +77,10 @@ public class MenuScreen implements Screen {
 
 
     private void createButtons() {
-        btn_new_game = new NewGameButton((int) (stage.getWidth()/2 - 100), 0, 200, 200, new NewGameButtonListener());
+        btn_new_game = new NewGameButton((int) (stage.getWidth()/2 - size), 0, size*2, size*2, new NewGameButtonListener());
         stage.addActor(btn_new_game);
 
-        button_characters = new CharactersButton(10, 0, 200, 200, new CharactersMenuButtonListener());
+        button_characters = new CharactersButton((int) (stage.getWidth()-size*1.5), 0,(int) (size*1.5), (int) (size*1.5), new CharactersMenuButtonListener());
         stage.addActor(button_characters);
     }
 
@@ -99,7 +94,7 @@ public class MenuScreen implements Screen {
     public class CharactersMenuButtonListener implements CharactersButton.CharactersMenuListener {
         @Override
         public void onCharactersMenu() {
-            game.setScreen(new CharacterScreens(game));
+            game.setScreen(new CharacterScreen(game));
             dispose();
         }
     }

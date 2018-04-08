@@ -9,33 +9,34 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.mygdx.eater.utils.AssetManager;
 import com.mygdx.eater.utils.GameState;
+import com.mygdx.eater.utils.PreferencesManager;
 
 /**
  * Created by marat on 05.02.18.
  */
 
 public class Character extends Actor {
-    private final float vertical_position;
-    int size;
-    final TextureRegion face_top;
-    final TextureRegion face_bottom;
-    final TextureRegion face_middle;
+    protected  float vertical_position;
+    protected int size;
+    protected TextureRegion face_top;
+    protected TextureRegion face_bottom;
+    protected TextureRegion face_middle;
     final Rectangle mouth;
     final Rectangle tooth_l;
     final Rectangle tooth_r;
-    float x;
-    float y;
-
-
+    protected float x;
+    protected float y;
+    protected String name;
 
     public Character(int characterSize) {
-        TextureAtlas atlas = new AssetManager().getFace();
+        name = PreferencesManager.getCharacterName();
+        TextureAtlas atlas = AssetManager.getFace();
         Skin skin = new Skin();
         skin.addRegions(atlas);
 
-        face_top = skin.getRegion("face_top");
-        face_middle = skin.getRegion("face_middle");
-        face_bottom = skin.getRegion("face_bottom");
+        face_top = skin.getRegion(name+"_top");
+        face_middle = skin.getRegion(name+"_middle");
+        face_bottom = skin.getRegion(name+"_bottom");
         size = characterSize;
         vertical_position = size*2;
         x = Gdx.graphics.getWidth()/2;
@@ -61,7 +62,7 @@ public class Character extends Actor {
     }
 
     public void draw_top(Batch batch){
-        batch.draw(face_bottom,getX()-size/2,(float) getY(), size, size/2);
+        batch.draw(face_bottom,getX()-size/2, getY(), size, size/2);
         batch.draw(face_top, getX()-size/2,vertical_position, size, size);
     }
 

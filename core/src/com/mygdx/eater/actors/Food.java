@@ -5,8 +5,11 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.mygdx.eater.stages.GameStage;
 import com.mygdx.eater.utils.AssetManager;
+import com.mygdx.eater.utils.Constants;
 import com.mygdx.eater.utils.GameState;
 import com.badlogic.gdx.math.Rectangle;
 
@@ -18,14 +21,17 @@ public class Food extends Actor {
     private static final int BLOCK_LEFT = 2;
     private static final int BLOCK_RIGHT = 3;
     private final static Random random = new Random();
-    private final static String[] FOOD_NAME = {"cookie", "meat", "bread", "poison"};
-    private final static int[] FOOD_SCORE = {1, 1, 1, -100};
+    protected float rotation;
+    private int rotaion_coef;
+    private String[] FOOD_NAME;
+    private int[] FOOD_SCORE;
     private final TextureRegion image;
     private int type;
     private int state;
     public boolean blocked;
     final Rectangle block;
     private Character character;
+    private GameStage stage;
 
     public interface IncrementWrapper {
         public void incrementScore(int score);
@@ -33,9 +39,16 @@ public class Food extends Actor {
     private Food.IncrementWrapper incrementWrapper;
 
 
-    public Food(int size, int y_start, Character face, Food.IncrementWrapper incrementWrapper) {
+    public Food(int size, int y_start, Character face, Food.IncrementWrapper incrementWrapper, GameStage stage) {
+        this.stage = stage;
+        rotation = 0;
+        rotaion_coef = 1;
         character = face;
-        TextureAtlas atlas = new AssetManager().getFood();
+        FOOD_SCORE = Constants.getFoodScoreForCharacter(character.getName());
+        FOOD_NAME = Constants.getFood();
+
+        new AssetManager();
+        TextureAtlas atlas = AssetManager.getFood();
         Skin skin = new Skin();
         skin.addRegions(atlas);
 
@@ -59,7 +72,7 @@ public class Food extends Actor {
     }
 
     public void draw(Batch batch, float parentAlpha) {
-        batch.draw(image, getX(), getY(),getWidth(),getHeight());
+        batch.draw(image, getX(), getY(),getWidth()/2, getHeight()/2, getWidth(),getHeight(), 1, 1, stage.getRotation());
     }
 
     @Override

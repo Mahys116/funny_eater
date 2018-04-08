@@ -1,40 +1,152 @@
 character.png
-size: 100, 251
+size: 100, 714
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
-face_bottom
+android_bottom
   rotate: false
   xy: 0, 0
   size: 100, 50
   orig: 100, 50
   offset: 0, 0
   index: -1
-face_middle
+android_middle
   rotate: false
   xy: 0, 50
   size: 100, 1
   orig: 100, 1
   offset: 0, 0
   index: -1
-face_top
+android_top
   rotate: false
   xy: 0, 51
   size: 100, 51
   orig: 100, 51
   offset: 0, 0
   index: -1
-skull_bottom
+beaver_bottom
   rotate: false
   xy: 0, 102
   size: 100, 50
   orig: 100, 50
   offset: 0, 0
   index: -1
-skull_top
+beaver_middle
   rotate: false
   xy: 0, 152
-  size: 100, 99
-  orig: 100, 99
+  size: 100, 1
+  orig: 100, 1
+  offset: 0, 0
+  index: -1
+beaver_top
+  rotate: false
+  xy: 0, 153
+  size: 100, 51
+  orig: 100, 51
+  offset: 0, 0
+  index: -1
+face_bottom
+  rotate: false
+  xy: 0, 204
+  size: 100, 50
+  orig: 100, 50
+  offset: 0, 0
+  index: -1
+face_middle
+  rotate: false
+  xy: 0, 254
+  size: 100, 1
+  orig: 100, 1
+  offset: 0, 0
+  index: -1
+face_top
+  rotate: false
+  xy: 0, 255
+  size: 100, 51
+  orig: 100, 51
+  offset: 0, 0
+  index: -1
+pirate_bottom
+  rotate: false
+  xy: 0, 306
+  size: 100, 50
+  orig: 100, 50
+  offset: 0, 0
+  index: -1
+pirate_middle
+  rotate: false
+  xy: 0, 356
+  size: 100, 1
+  orig: 100, 1
+  offset: 0, 0
+  index: -1
+pirate_top
+  rotate: false
+  xy: 0, 357
+  size: 100, 51
+  orig: 100, 51
+  offset: 0, 0
+  index: -1
+rabbit_bottom
+  rotate: false
+  xy: 0, 408
+  size: 100, 50
+  orig: 100, 50
+  offset: 0, 0
+  index: -1
+rabbit_middle
+  rotate: false
+  xy: 0, 458
+  size: 100, 1
+  orig: 100, 1
+  offset: 0, 0
+  index: -1
+rabbit_top
+  rotate: false
+  xy: 0, 459
+  size: 100, 51
+  orig: 100, 51
+  offset: 0, 0
+  index: -1
+skeleton_bottom
+  rotate: false
+  xy: 0, 510
+  size: 100, 50
+  orig: 100, 50
+  offset: 0, 0
+  index: -1
+skeleton_middle
+  rotate: false
+  xy: 0, 560
+  size: 100, 1
+  orig: 100, 1
+  offset: 0, 0
+  index: -1
+skeleton_top
+  rotate: false
+  xy: 0, 561
+  size: 100, 51
+  orig: 100, 51
+  offset: 0, 0
+  index: -1
+vegan_bottom
+  rotate: false
+  xy: 0, 612
+  size: 100, 50
+  orig: 100, 50
+  offset: 0, 0
+  index: -1
+vegan_middle
+  rotate: false
+  xy: 0, 662
+  size: 100, 1
+  orig: 100, 1
+  offset: 0, 0
+  index: -1
+vegan_top
+  rotate: false
+  xy: 0, 663
+  size: 100, 51
+  orig: 100, 51
   offset: 0, 0
   index: -1

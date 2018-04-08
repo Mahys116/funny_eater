@@ -14,10 +14,11 @@ import com.mygdx.eater.actors.menu.NewGameButton;
 import com.mygdx.eater.actors.menu.PauseButton;
 import com.mygdx.eater.actors.menu.ResumeButton;
 import com.mygdx.eater.actors.menu.ScoreLabel;
-import com.mygdx.eater.screens.CharacterScreens;
+import com.mygdx.eater.screens.CharacterScreen;
 import com.mygdx.eater.screens.GameScreen;
 import com.mygdx.eater.screens.MenuScreen;
 import com.mygdx.eater.utils.GameState;
+import com.mygdx.eater.utils.PreferencesManager;
 
 public class GameStage extends Stage {
     private static final int HUNGER_MAX = 10;
@@ -36,6 +37,8 @@ public class GameStage extends Stage {
     private Label lbl_game_end;
     private Label lbl_game_end_highscore;
     private Label lbl_game_end_score;
+    private int rotaion_coef;
+    public float rotation;
 
     public GameStage(ScreenViewport screen, Eater game) {
         super(screen);
@@ -43,6 +46,8 @@ public class GameStage extends Stage {
         initGameParams();
         createGameElements();
         showGameMenu();
+        rotation = 0;
+        rotaion_coef = 1;
     }
 
     private void showGameMenu() {
@@ -83,8 +88,7 @@ public class GameStage extends Stage {
         lbl_game_end_highscore.setVisible(true);
         lbl_game_end_score.setVisible(true);
 
-        Preferences prefs = Gdx.app.getPreferences("preferences");
-        int high_score = prefs.getInteger("high_score", 0);
+        int high_score = PreferencesManager.getHighScore();
         lbl_game_end_score.setText("Score: "+ String.format("%d", score));
         lbl_game_end_highscore.setText("Highscore: "+ String.format("%d", high_score));
     }
@@ -146,21 +150,27 @@ public class GameStage extends Stage {
         food_delta += delta;
         hunger -= delta*1;
         if (food_delta > ((getWidth()/8)/GameState.getInstance().getSpeed())) {
-            Food food = new Food((int) getWidth()/10,(int) (Gdx.graphics.getWidth()*2/5-getWidth()/10), character, new GameStage.IncrementScoreWrapper());
+            Food food = new Food((int) getWidth()/10,(int) (Gdx.graphics.getWidth()*2/5-getWidth()/10), character, new GameStage.IncrementScoreWrapper(), this);
             addActor(food);
             food_delta = 0;
             GameState.getInstance().incSpeed(1);
         }
         if (hunger <= 0) {
             GameState.getInstance().end();
-            Preferences prefs = Gdx.app.getPreferences("preferences");
-            int high_score = prefs.getInteger("high_score", 0);
-            if (high_score < score) prefs.putInteger("high_score", score);
-            prefs.flush();
+            int high_score = PreferencesManager.getHighScore();
+            if (high_score < score) PreferencesManager.setHighScore(score);
+
             createGameOverMenu();
         }
         lbl_score.setScore(score);
         hunger_level.setLevel(hunger);
+        rotation = rotation + delta*20*rotaion_coef;
+        if (rotation > 15) rotaion_coef = -1;
+        if (rotation < -15) rotaion_coef = 1;
+    }
+
+    public float getRotation(){
+        return rotation;
     }
 
     private class PauseButtonListener implements PauseButton.PauseListener {
@@ -196,7 +206,7 @@ public class GameStage extends Stage {
     private class CharactersMenuButtonListener implements CharactersButton.CharactersMenuListener {
         @Override
         public void onCharactersMenu() {
-            game.setScreen(new CharacterScreens(game));
+            game.setScreen(new CharacterScreen(game));
             dispose();
         }
     }
