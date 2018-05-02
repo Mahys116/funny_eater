@@ -7,6 +7,7 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.mygdx.eater.Eater;
 import com.mygdx.eater.actors.Character;
 import com.mygdx.eater.actors.Food;
+import com.mygdx.eater.actors.TutorialHand;
 import com.mygdx.eater.actors.menu.CharactersButton;
 import com.mygdx.eater.actors.menu.HungerLevel;
 import com.mygdx.eater.actors.menu.Label;
@@ -37,8 +38,9 @@ public class GameStage extends Stage {
     private Label lbl_game_end;
     private Label lbl_game_end_highscore;
     private Label lbl_game_end_score;
-    private int rotaion_coef;
+    private int rotation_coef;
     public float rotation;
+    private TutorialHand hand;
 
     public GameStage(ScreenViewport screen, Eater game) {
         super(screen);
@@ -47,7 +49,7 @@ public class GameStage extends Stage {
         createGameElements();
         showGameMenu();
         rotation = 0;
-        rotaion_coef = 1;
+        rotation_coef = 1;
     }
 
     private void showGameMenu() {
@@ -114,7 +116,7 @@ public class GameStage extends Stage {
         btn_new_game = new NewGameButton((int) (getWidth()/2 - size), 0, size*2, size*2, new GameStage.NewGameButtonListener());
         btn_character = new CharactersButton(size/2, 0, size, size, new GameStage.CharactersMenuButtonListener());
         lbl_game_end_score = new Label((int) (getWidth()/2-size), (int) (getHeight()/2), "");
-        lbl_game_end_highscore = new Label((int) (getWidth()/2-size), (int) (getHeight()/2-size), "20");
+        lbl_game_end_highscore = new Label((int) (getWidth()/2-size), (int) (getHeight()/2-size), "Highscore:");
 
         addActor(lbl_game_paused);
         addActor(btn_pause);
@@ -125,13 +127,17 @@ public class GameStage extends Stage {
         addActor(lbl_game_end_score);
         addActor(lbl_game_end_highscore);
 
+        // Tutorial
+        hand = new TutorialHand(size, getWidth()/2,getHeight()/6, character);
+        addActor(hand);
+
     }
 
     private void initGameParams() {
         food_delta = 0;
         score = 0;
         hunger = 7;
-        GameState.getInstance().resume();
+        GameState.getInstance().init();
         GameState.getInstance().setSpeed(200);
     }
 
@@ -140,6 +146,7 @@ public class GameStage extends Stage {
         super.draw();
         getBatch().begin();
         character.draw_top(getBatch());
+        hand.draw(getBatch(),0);
         getBatch().end();
     }
 
@@ -147,11 +154,11 @@ public class GameStage extends Stage {
     public void act(float delta) {
         if (GameState.getInstance().isPaused()) return;
         super.act(delta);
+        if (GameState.getInstance().isInit()) return;
         food_delta += delta;
         hunger -= delta*1;
         if (food_delta > ((getWidth()/8)/GameState.getInstance().getSpeed())) {
-            Food food = new Food((int) getWidth()/10,(int) (Gdx.graphics.getWidth()*2/5-getWidth()/10), character, new GameStage.IncrementScoreWrapper(), this);
-            addActor(food);
+            createFood();
             food_delta = 0;
             GameState.getInstance().incSpeed(1);
         }
@@ -159,14 +166,23 @@ public class GameStage extends Stage {
             GameState.getInstance().end();
             int high_score = PreferencesManager.getHighScore();
             if (high_score < score) PreferencesManager.setHighScore(score);
-
             createGameOverMenu();
         }
         lbl_score.setScore(score);
         hunger_level.setLevel(hunger);
-        rotation = rotation + delta*20*rotaion_coef;
-        if (rotation > 15) rotaion_coef = -1;
-        if (rotation < -15) rotaion_coef = 1;
+        rotateFood(delta);
+
+    }
+
+    private void createFood() {
+        Food food = new Food((int) getWidth()/10,(int) (Gdx.graphics.getWidth()*2/5-getWidth()/10), character, new GameStage.IncrementScoreWrapper(), this);
+        addActor(food);
+    }
+
+    private void rotateFood(float delta) {
+        rotation = rotation + delta*50*rotation_coef;
+        if (rotation > 20) rotation_coef = -1;
+        if (rotation < -20) rotation_coef = 1;
     }
 
     public float getRotation(){
@@ -191,7 +207,8 @@ public class GameStage extends Stage {
         public void incrementScore(int hungerRate) {
             hunger += hungerRate;
             if (hunger > HUNGER_MAX) { hunger = 10; }
-            if (hungerRate > 0) score += hungerRate;
+//            if (hungerRate > 0) score += hungerRate;
+            score += 1;
         }
     }
 

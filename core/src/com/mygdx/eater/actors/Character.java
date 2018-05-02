@@ -11,9 +11,6 @@ import com.mygdx.eater.utils.AssetManager;
 import com.mygdx.eater.utils.GameState;
 import com.mygdx.eater.utils.PreferencesManager;
 
-/**
- * Created by marat on 05.02.18.
- */
 
 public class Character extends Actor {
     protected  float vertical_position;
@@ -73,12 +70,9 @@ public class Character extends Actor {
                     (Gdx.graphics.getHeight() - Gdx.input.getY()) <= (vertical_position - size/2)) {
                 x = Gdx.input.getX();
                 y = Gdx.graphics.getHeight() - Gdx.input.getY();
-                mouth.setPosition(getX()-size/2+1, getY());
-                tooth_l.setPosition(getX()-size/2, getY());
-                tooth_r.setPosition(getX()+size/2, getY());
+                moveTo(x, y);
             }
         }
-
     }
 
     @Override
@@ -89,5 +83,14 @@ public class Character extends Actor {
     @Override
     public float getY() {
         return y;
+    }
+
+
+    public void moveTo(float x, float y) {
+        this.x = x;
+        this.y = y;
+        mouth.setPosition(x-size/2+1, y);
+        tooth_l.setPosition(x-size/2, y);
+        tooth_r.setPosition(x+size/2, y);
     }
 }

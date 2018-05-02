@@ -72,7 +72,11 @@ public class Food extends Actor {
     }
 
     public void draw(Batch batch, float parentAlpha) {
-        batch.draw(image, getX(), getY(),getWidth()/2, getHeight()/2, getWidth(),getHeight(), 1, 1, stage.getRotation());
+        if (state == ROLL) {
+            batch.draw(image, getX(), getY(), getWidth() / 2, getHeight() / 4, getWidth(), getHeight(), 1, 1, stage.getRotation());
+        } else {
+            batch.draw(image, getX(), getY(), getWidth() / 2, getHeight() / 4, getWidth(), getHeight(), 1, 1, 0);
+        }
     }
 
     @Override

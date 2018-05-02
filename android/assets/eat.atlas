@@ -1,60 +1,67 @@
 eat.png
-size: 484, 55
+size: 113, 251
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 back
   rotate: false
-  xy: 0, 0
+  xy: 0, 186
   size: 56, 55
   orig: 56, 55
   offset: 0, 0
   index: -1
 chose
   rotate: false
-  xy: 56, 0
+  xy: 0, 0
   size: 113, 31
   orig: 113, 31
   offset: 0, 0
   index: -1
+hand
+  rotate: false
+  xy: 56, 186
+  size: 50, 65
+  orig: 50, 65
+  offset: 0, 0
+  index: -1
 left
   rotate: false
-  xy: 169, 0
+  xy: 50, 31
   size: 50, 48
   orig: 50, 48
   offset: 0, 0
   index: -1
 menu
   rotate: false
-  xy: 219, 0
+  xy: 0, 131
   size: 55, 55
   orig: 55, 55
   offset: 0, 0
   index: -1
 pause
   rotate: false
-  xy: 274, 0
+  xy: 50, 79
   size: 57, 52
   orig: 57, 52
   offset: 0, 0
   index: -1
 play
   rotate: false
-  xy: 331, 0
+  xy: 0, 79
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 right
   rotate: false
-  xy: 381, 0
+  xy: 0, 31
   size: 50, 47
   orig: 50, 47
   offset: 0, 0
   index: -1
 settings
   rotate: false
-  xy: 431, 0
+  xy: 55, 131
   size: 53, 55
   orig: 53, 55
   offset: 0, 0

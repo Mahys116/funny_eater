@@ -27,7 +27,7 @@ public class GameState {
     }
 
     public GameState() {
-        state = GAME_RUNNING;
+        state = GAME_INIT;
     }
 
     public void pause() {
@@ -42,11 +42,15 @@ public class GameState {
         state = GAME_OVER;
     }
 
+    public void init() { state = GAME_INIT;}
+
     public int getState() {
         return state;
     }
 
     public boolean isPaused() { return (state == GAME_PAUSED || state == GAME_OVER);}
+
+    public boolean isInit() {return state == GAME_INIT;}
 
     public void setSpeed(float speed) {
         this.speed = speed;
