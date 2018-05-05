@@ -7,6 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.mygdx.eater.Eater;
+import com.mygdx.eater.actors.menu.CharacterView;
 import com.mygdx.eater.actors.menu.CharactersButton;
 import com.mygdx.eater.actors.menu.Label;
 import com.mygdx.eater.actors.menu.NewGameButton;
@@ -20,6 +21,7 @@ public class MenuScreen implements Screen {
     private Button btn_new_game;
     private Button button_characters;
     private int size;
+    private CharacterView face;
 
     public MenuScreen(final Eater game) {
         this.game = game;
@@ -32,6 +34,10 @@ public class MenuScreen implements Screen {
         Label lbl_score = new Label((int) (stage.getWidth()/2), (int) (stage.getHeight()/2), String.format("%d", high_score));
         stage.addActor(lbl_score);
         createButtons();
+
+        String current_name = PreferencesManager.getCharacterName();
+        face = new CharacterView(size*2, current_name, stage.getWidth()/2-size);
+        stage.addActor(face);
     }
 
     @Override

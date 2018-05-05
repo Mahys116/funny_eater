@@ -31,8 +31,9 @@ public class CharacterView extends Character {
     }
 
     public void draw(Batch batch, float parentAlpha) {
-        batch.draw(face_bottom, getX(), vertical_position-size, size, size/2);
-        batch.draw(face_top, getX(),vertical_position, size, size);
+        batch.draw(face_middle, getX(), vertical_position-size/2, size,size);
+        batch.draw(face_bottom, getX(), vertical_position-size/2, size, size/2);
+        batch.draw(face_top, getX(),vertical_position, size, size/2);
     }
 
     public void setCharacter(String name) {

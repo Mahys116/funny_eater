@@ -55,12 +55,12 @@ public class Character extends Actor {
 
     @Override
     public void draw(Batch batch, float parentAlpha) {
-        batch.draw(face_middle, getX()-size/2, getY(), size,vertical_position-getY());
+        batch.draw(face_middle, getX()-size/2, getY(), size,vertical_position-getY()+size/2);
     }
 
     public void draw_top(Batch batch){
         batch.draw(face_bottom,getX()-size/2, getY(), size, size/2);
-        batch.draw(face_top, getX()-size/2,vertical_position, size, size);
+        batch.draw(face_top, getX()-size/2,vertical_position, size, size/2);
     }
 
     @Override
