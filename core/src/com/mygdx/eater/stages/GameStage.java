@@ -78,7 +78,7 @@ public class GameStage extends Stage {
         lbl_game_end_score.setVisible(false);
     }
 
-    private void  createGameOverMenu() {
+    private void createGameOverMenu() {
         btn_pause.setVisible(false);
 
         btn_resume.setVisible(false);
@@ -166,6 +166,7 @@ public class GameStage extends Stage {
             GameState.getInstance().end();
             int high_score = PreferencesManager.getHighScore();
             if (high_score < score) PreferencesManager.setHighScore(score);
+            PreferencesManager.incTotalScore(score);
             createGameOverMenu();
         }
         lbl_score.setScore(score);

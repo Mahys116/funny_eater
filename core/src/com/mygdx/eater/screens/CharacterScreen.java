@@ -9,13 +9,12 @@ import com.mygdx.eater.Eater;
 import com.mygdx.eater.actors.menu.CharacterSelectButton;
 import com.mygdx.eater.actors.menu.CharacterView;
 import com.mygdx.eater.actors.menu.MainMenuButton;
-import com.mygdx.eater.actors.menu.NewGameButton;
 import com.mygdx.eater.actors.menu.NextButton;
 import com.mygdx.eater.actors.menu.PreviousButton;
 import com.mygdx.eater.utils.Constants;
 import com.mygdx.eater.utils.PreferencesManager;
 
-import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 public class CharacterScreen implements Screen {
     private final Eater game;
@@ -23,6 +22,7 @@ public class CharacterScreen implements Screen {
 
     private String current_name;
     private String[] characters;
+    private ArrayList<String> available_chracters;
     private int index;
     private CharacterView face;
 
@@ -46,6 +46,7 @@ public class CharacterScreen implements Screen {
 
         current_name = PreferencesManager.getCharacterName();
         characters = Constants.getCharacters();
+        available_chracters = PreferencesManager.updateAvailableCharacters();
         index = java.util.Arrays.asList(characters).indexOf(current_name);
 
         face = new CharacterView(size*2, current_name, stage.getWidth()/4);
@@ -103,8 +104,6 @@ public class CharacterScreen implements Screen {
             index = (index + 1) % characters.length;
             current_name = characters[index];
             face.setCharacter(current_name);
-//            Gdx.app.log("index", String.format("%d", index));
-//            Gdx.app.log("name", current_name);
         }
     }
 
@@ -114,8 +113,6 @@ public class CharacterScreen implements Screen {
             if (index < 0) index = characters.length - 1;
             current_name = characters[index];
             face.setCharacter(current_name);
-//            Gdx.app.log("index", String.format("%d", index));
-//            Gdx.app.log("name", current_name);
         }
     }
 
