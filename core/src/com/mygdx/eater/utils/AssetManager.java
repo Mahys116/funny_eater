@@ -1,7 +1,9 @@
 package com.mygdx.eater.utils;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 
 public class AssetManager {
 
@@ -17,8 +19,14 @@ public class AssetManager {
         return new TextureAtlas("food.atlas");
     }
 
-    public static BitmapFont getFont() {
-        return new BitmapFont();
+    public static BitmapFont getFont(int size) {
+        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("American Purpose.ttf"));
+        FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
+        parameter.size = size;
+        BitmapFont font = generator.generateFont(parameter);
+        generator.dispose();
+
+        return font;
     }
 
 }

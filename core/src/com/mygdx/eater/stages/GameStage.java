@@ -110,14 +110,14 @@ public class GameStage extends Stage {
         // Menus
         btn_pause = new PauseButton((int) (getWidth() - size), (int) (getHeight() - size), size, size, new GameStage.PauseButtonListener());
 
-        lbl_game_paused = new Label((int) (getWidth()/2-size), (int) (getHeight()/2+size), "Paused");
+        lbl_game_paused = new Label((int) (getWidth()/2-size), (int) (getHeight()/2+size), "Paused", (int) (getWidth()/20));
         btn_resume = new ResumeButton((int) (getWidth()/2), (int) (getHeight()/2), size, size, new GameStage.ResumeButtonListener());
 
-        lbl_game_end = new Label((int) (getWidth()/2-size), (int) (getHeight()/2+size), "Game Over");
+        lbl_game_end = new Label((int) (getWidth()/2-size), (int) (getHeight()/2+size), "Game Over", (int) (getWidth()/20));
         btn_new_game = new NewGameButton((int) (getWidth()/2 - size*2.177), 0,(int) (size*2*2.177), size*2, new GameStage.NewGameButtonListener());
         btn_character = new CharactersButton((int) (getWidth()-size*1.75), (int) (size*0.25),(int) (size*1.5), (int) (size*1.5), new GameStage.CharactersMenuButtonListener());
-        lbl_game_end_score = new Label((int) (getWidth()/2-size), (int) (getHeight()/2), "");
-        lbl_game_end_highscore = new Label((int) (getWidth()/2-size), (int) (getHeight()/2-size), "Highscore:");
+        lbl_game_end_score = new Label((int) (getWidth()/2-size), (int) (getHeight()/2), "", (int) (getWidth()/20));
+        lbl_game_end_highscore = new Label((int) (getWidth()/2-size), (int) (getHeight()/2-size), "Highscore:", (int) (getWidth()/20));
 
         addActor(lbl_game_paused);
         addActor(btn_pause);

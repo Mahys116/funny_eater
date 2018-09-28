@@ -15,11 +15,10 @@ public class Label extends Actor {
     private BitmapFont font;
     private String text;
 
-    public Label(int x, int y, String text) {
+    public Label(int x, int y, String text, int size) {
         setPosition(x,y);
-        font = AssetManager.getFont();
+        font = AssetManager.getFont(size);
         this.text = text;
-        font.getData().setScale(4);
         font.setColor(Color.BLACK);
     }
 

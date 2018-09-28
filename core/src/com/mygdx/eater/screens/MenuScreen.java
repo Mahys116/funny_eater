@@ -30,7 +30,7 @@ public class MenuScreen implements Screen {
         size = (int) (stage.getWidth()/10);
 
         int high_score = PreferencesManager.getHighScore();
-        Label lbl_score = new Label((int) (stage.getWidth()/2), (int) (stage.getHeight()/2), String.format("%d", high_score));
+        Label lbl_score = new Label((int) (stage.getWidth()/2), (int) (stage.getHeight()/2), String.format("%d", high_score), (int) (stage.getWidth()/10));
         stage.addActor(lbl_score);
         createButtons();
 
