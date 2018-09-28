@@ -1,68 +1,152 @@
 eat.png
-size: 113, 251
+size: 881, 288
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
-back
+back_hover
   rotate: false
-  xy: 0, 186
-  size: 56, 55
-  orig: 56, 55
+  xy: 785, 96
+  size: 96, 96
+  orig: 96, 96
   offset: 0, 0
   index: -1
-chose
+back_normal
   rotate: false
-  xy: 0, 0
-  size: 113, 31
-  orig: 113, 31
+  xy: 0, 192
+  size: 96, 96
+  orig: 96, 96
   offset: 0, 0
   index: -1
 hand
   rotate: false
-  xy: 56, 186
+  xy: 0, 0
   size: 50, 65
   orig: 50, 65
   offset: 0, 0
   index: -1
-left
+left_hover
   rotate: false
-  xy: 50, 31
-  size: 50, 48
-  orig: 50, 48
+  xy: 689, 96
+  size: 96, 96
+  orig: 96, 96
   offset: 0, 0
   index: -1
-menu
+left_normal
   rotate: false
-  xy: 0, 131
-  size: 55, 55
-  orig: 55, 55
+  xy: 96, 192
+  size: 96, 96
+  orig: 96, 96
   offset: 0, 0
   index: -1
-pause
+menu_hover
   rotate: false
-  xy: 50, 79
-  size: 57, 52
-  orig: 57, 52
+  xy: 348, 192
+  size: 96, 96
+  orig: 96, 96
   offset: 0, 0
   index: -1
-play
+menu_normal
   rotate: false
-  xy: 0, 79
-  size: 50, 50
-  orig: 50, 50
+  xy: 599, 192
+  size: 96, 96
+  orig: 96, 96
   offset: 0, 0
   index: -1
-right
+ok_hover
   rotate: false
-  xy: 0, 31
-  size: 50, 47
-  orig: 50, 47
+  xy: 695, 192
+  size: 155, 96
+  orig: 155, 96
   offset: 0, 0
   index: -1
-settings
+ok_locked
   rotate: false
-  xy: 55, 131
-  size: 53, 55
-  orig: 53, 55
+  xy: 444, 192
+  size: 155, 96
+  orig: 155, 96
+  offset: 0, 0
+  index: -1
+okl_normal
+  rotate: false
+  xy: 192, 192
+  size: 156, 96
+  orig: 156, 96
+  offset: 0, 0
+  index: -1
+pause_hover
+  rotate: false
+  xy: 497, 96
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+pause_normal
+  rotate: false
+  xy: 451, 0
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+play2_hover
+  rotate: false
+  xy: 259, 0
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+play2_normal
+  rotate: false
+  xy: 355, 0
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+play_hover
+  rotate: false
+  xy: 50, 0
+  size: 209, 96
+  orig: 209, 96
+  offset: 0, 0
+  index: -1
+play_locked
+  rotate: false
+  xy: 547, 0
+  size: 209, 96
+  orig: 209, 96
+  offset: 0, 0
+  index: -1
+play_normal
+  rotate: false
+  xy: 0, 96
+  size: 209, 96
+  orig: 209, 96
+  offset: 0, 0
+  index: -1
+right_hover
+  rotate: false
+  xy: 305, 96
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+right_normal
+  rotate: false
+  xy: 401, 96
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+settings_hover
+  rotate: false
+  xy: 209, 96
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+settings_normal
+  rotate: false
+  xy: 593, 96
+  size: 96, 96
+  orig: 96, 96
   offset: 0, 0
   index: -1

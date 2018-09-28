@@ -22,8 +22,8 @@ public class CharactersButton extends Button {
         skin = new Skin();
         skin.addRegions(atlas);
         ButtonStyle style = new ButtonStyle();
-        style.up = skin.getDrawable("menu");
-        style.down = skin.getDrawable("menu");
+        style.up = skin.getDrawable("menu_normal");
+        style.down = skin.getDrawable("menu_hover");
 
         setStyle(style);
         setSize(width, height);

@@ -41,6 +41,7 @@ public class GameStage extends Stage {
     private int rotation_coef;
     public float rotation;
     private TutorialHand hand;
+    private int size;
 
     public GameStage(ScreenViewport screen, Eater game) {
         super(screen);
@@ -99,7 +100,7 @@ public class GameStage extends Stage {
         character = new Character(Gdx.graphics.getWidth()/5);
         addActor(character);
 
-        int size = (int) (getWidth() / 10);
+        size = (int) (getWidth() / 10);
 
         lbl_score = new ScoreLabel((int) (getWidth()/2), (int) getHeight()*3/4);
         addActor(lbl_score);
@@ -113,8 +114,8 @@ public class GameStage extends Stage {
         btn_resume = new ResumeButton((int) (getWidth()/2), (int) (getHeight()/2), size, size, new GameStage.ResumeButtonListener());
 
         lbl_game_end = new Label((int) (getWidth()/2-size), (int) (getHeight()/2+size), "Game Over");
-        btn_new_game = new NewGameButton((int) (getWidth()/2 - size), 0, size*2, size*2, new GameStage.NewGameButtonListener());
-        btn_character = new CharactersButton(size/2, 0, size, size, new GameStage.CharactersMenuButtonListener());
+        btn_new_game = new NewGameButton((int) (getWidth()/2 - size*2.177), 0,(int) (size*2*2.177), size*2, new GameStage.NewGameButtonListener());
+        btn_character = new CharactersButton((int) (getWidth()-size*1.75), (int) (size*0.25),(int) (size*1.5), (int) (size*1.5), new GameStage.CharactersMenuButtonListener());
         lbl_game_end_score = new Label((int) (getWidth()/2-size), (int) (getHeight()/2), "");
         lbl_game_end_highscore = new Label((int) (getWidth()/2-size), (int) (getHeight()/2-size), "Highscore:");
 
@@ -176,7 +177,7 @@ public class GameStage extends Stage {
     }
 
     private void createFood() {
-        Food food = new Food((int) getWidth()/10,(int) (Gdx.graphics.getWidth()*2/5-getWidth()/10), character, new GameStage.IncrementScoreWrapper(), this);
+        Food food = new Food(size, (Gdx.graphics.getWidth()*2/5-size), character, new GameStage.IncrementScoreWrapper(), this);
         addActor(food);
     }
 

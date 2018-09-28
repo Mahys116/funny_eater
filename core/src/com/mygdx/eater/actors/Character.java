@@ -35,7 +35,7 @@ public class Character extends Actor {
         face_middle = skin.getRegion(name+"_middle");
         face_bottom = skin.getRegion(name+"_bottom");
         size = characterSize;
-        vertical_position = size*2;
+        vertical_position = size*9/4;
         x = Gdx.graphics.getWidth()/2;
         y = vertical_position - size;
 

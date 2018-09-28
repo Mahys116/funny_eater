@@ -18,8 +18,8 @@ public class MainMenuButton extends Button {
         skin = new Skin();
         skin.addRegions(atlas);
         Button.ButtonStyle style = new Button.ButtonStyle();
-        style.up = skin.getDrawable("back");
-        style.down = skin.getDrawable("back");
+        style.up = skin.getDrawable("back_normal");
+        style.down = skin.getDrawable("back_hover");
 
         setStyle(style);
         setSize(width, height);

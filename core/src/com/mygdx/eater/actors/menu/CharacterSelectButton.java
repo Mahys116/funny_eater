@@ -18,8 +18,9 @@ public class CharacterSelectButton extends Button {
         skin = new Skin();
         skin.addRegions(atlas);
         Button.ButtonStyle style = new Button.ButtonStyle();
-        style.up = skin.getDrawable("chose");
-        style.down = skin.getDrawable("chose");
+        style.up = skin.getDrawable("okl_normal");
+        style.down = skin.getDrawable("ok_hover");
+        style.disabled = skin.getDrawable("ok_locked");
 
         setStyle(style);
         setSize(width, height);

@@ -18,8 +18,8 @@ public class NextButton extends Button {
         skin = new Skin();
         skin.addRegions(atlas);
         Button.ButtonStyle style = new Button.ButtonStyle();
-        style.up = skin.getDrawable("right");
-        style.down = skin.getDrawable("right");
+        style.up = skin.getDrawable("right_normal");
+        style.down = skin.getDrawable("right_hover");
 
         setStyle(style);
         setSize(width, height);

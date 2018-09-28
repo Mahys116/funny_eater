@@ -30,7 +30,6 @@ public class MenuScreen implements Screen {
         size = (int) (stage.getWidth()/10);
 
         int high_score = PreferencesManager.getHighScore();
-        Gdx.app.log("score", String.format("%d", high_score));
         Label lbl_score = new Label((int) (stage.getWidth()/2), (int) (stage.getHeight()/2), String.format("%d", high_score));
         stage.addActor(lbl_score);
         createButtons();
@@ -83,10 +82,10 @@ public class MenuScreen implements Screen {
 
 
     private void createButtons() {
-        btn_new_game = new NewGameButton((int) (stage.getWidth()/2 - size), 0, size*2, size*2, new NewGameButtonListener());
+        btn_new_game = new NewGameButton((int) (stage.getWidth()/2 - size*2.177), 0,(int) (size*2*2.177), size*2, new NewGameButtonListener());
         stage.addActor(btn_new_game);
 
-        button_characters = new CharactersButton((int) (stage.getWidth()-size*1.5), 0,(int) (size*1.5), (int) (size*1.5), new CharactersMenuButtonListener());
+        button_characters = new CharactersButton((int) (stage.getWidth()-size*1.75), (int) (size*0.25),(int) (size*1.5), (int) (size*1.5), new CharactersMenuButtonListener());
         stage.addActor(button_characters);
     }
 

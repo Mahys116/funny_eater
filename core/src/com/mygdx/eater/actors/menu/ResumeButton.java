@@ -19,8 +19,8 @@ public class ResumeButton extends Button {
         skin = new Skin();
         skin.addRegions(atlas);
         Button.ButtonStyle style = new Button.ButtonStyle();
-        style.up = skin.getDrawable("play");
-        style.down = skin.getDrawable("play");
+        style.up = skin.getDrawable("play2_normal");
+        style.down = skin.getDrawable("play2_hover");
 
         setStyle(style);
         setSize(width, height);
