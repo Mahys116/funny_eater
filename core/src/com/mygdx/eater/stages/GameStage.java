@@ -1,7 +1,6 @@
 package com.mygdx.eater.stages;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.mygdx.eater.Eater;
@@ -16,8 +15,6 @@ import com.mygdx.eater.actors.menu.PauseButton;
 import com.mygdx.eater.actors.menu.ResumeButton;
 import com.mygdx.eater.actors.menu.ScoreLabel;
 import com.mygdx.eater.screens.CharacterScreen;
-import com.mygdx.eater.screens.GameScreen;
-import com.mygdx.eater.screens.MenuScreen;
 import com.mygdx.eater.utils.GameState;
 import com.mygdx.eater.utils.PreferencesManager;
 
