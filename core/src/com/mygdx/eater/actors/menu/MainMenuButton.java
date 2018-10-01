@@ -19,7 +19,7 @@ public class MainMenuButton extends Button {
         skin.addRegions(atlas);
         Button.ButtonStyle style = new Button.ButtonStyle();
         style.up = skin.getDrawable("back_normal");
-        style.down = skin.getDrawable("back_hover");
+        style.down = skin.getDrawable("back_pressed");
 
         setStyle(style);
         setSize(width, height);

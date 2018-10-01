@@ -1,18 +1,18 @@
 eat.png
-size: 946, 288
+size: 881, 288
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
-back_hover
+back_normal
   rotate: false
-  xy: 384, 96
+  xy: 785, 96
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
-back_normal
+back_pressed
   rotate: false
-  xy: 0, 96
+  xy: 0, 192
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
@@ -24,136 +24,129 @@ hand
   orig: 50, 65
   offset: 0, 0
   index: -1
-left_hover
-  rotate: false
-  xy: 818, 0
-  size: 96, 96
-  orig: 96, 96
-  offset: 0, 0
-  index: -1
 left_normal
   rotate: false
-  xy: 288, 96
+  xy: 689, 96
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
-menu_hover
+left_pressed
   rotate: false
-  xy: 192, 96
+  xy: 96, 192
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 menu_normal
   rotate: false
-  xy: 96, 96
+  xy: 348, 192
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
-ok_hover
+menu_pressed
   rotate: false
-  xy: 635, 96
-  size: 155, 96
-  orig: 155, 96
+  xy: 599, 192
+  size: 96, 96
+  orig: 96, 96
   offset: 0, 0
   index: -1
 ok_locked
   rotate: false
-  xy: 480, 96
+  xy: 695, 192
+  size: 155, 96
+  orig: 155, 96
+  offset: 0, 0
+  index: -1
+ok_pressed
+  rotate: false
+  xy: 444, 192
   size: 155, 96
   orig: 155, 96
   offset: 0, 0
   index: -1
 okl_normal
   rotate: false
-  xy: 790, 96
+  xy: 192, 192
   size: 156, 96
   orig: 156, 96
   offset: 0, 0
   index: -1
-pause_hover
-  rotate: false
-  xy: 50, 0
-  size: 96, 96
-  orig: 96, 96
-  offset: 0, 0
-  index: -1
 pause_normal
   rotate: false
-  xy: 722, 0
+  xy: 497, 96
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
-play2_hover
+pause_pressed
   rotate: false
-  xy: 146, 0
+  xy: 451, 0
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 play2_normal
   rotate: false
-  xy: 242, 0
+  xy: 259, 0
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
-play_hover
+play2_pressed
   rotate: false
-  xy: 0, 192
-  size: 209, 96
-  orig: 209, 96
+  xy: 355, 0
+  size: 96, 96
+  orig: 96, 96
   offset: 0, 0
   index: -1
 play_locked
   rotate: false
-  xy: 418, 192
+  xy: 50, 0
   size: 209, 96
   orig: 209, 96
   offset: 0, 0
   index: -1
 play_normal
   rotate: false
-  xy: 209, 192
+  xy: 547, 0
   size: 209, 96
   orig: 209, 96
   offset: 0, 0
   index: -1
-right_hover
+play_pressed
   rotate: false
-  xy: 338, 0
-  size: 96, 96
-  orig: 96, 96
+  xy: 0, 96
+  size: 209, 96
+  orig: 209, 96
   offset: 0, 0
   index: -1
 right_normal
   rotate: false
-  xy: 626, 0
+  xy: 305, 96
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
-settings_hover
+right_pressed
   rotate: false
-  xy: 434, 0
+  xy: 401, 96
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 settings_normal
   rotate: false
-  xy: 530, 0
+  xy: 209, 96
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
-start_locked
+settings_pressed
   rotate: false
-  xy: 627, 192
-  size: 248, 96
-  orig: 248, 96
+  xy: 593, 96
+  size: 96, 96
+  orig: 96, 96
   offset: 0, 0
   index: -1

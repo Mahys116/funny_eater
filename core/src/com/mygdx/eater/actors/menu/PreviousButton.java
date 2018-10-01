@@ -23,7 +23,7 @@ public class PreviousButton extends Button {
         skin.addRegions(atlas);
         Button.ButtonStyle style = new Button.ButtonStyle();
         style.up = skin.getDrawable("left_normal");
-        style.down = skin.getDrawable("left_hover");
+        style.down = skin.getDrawable("left_pressed");
 
         setStyle(style);
         setSize(width, height);

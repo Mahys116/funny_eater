@@ -23,7 +23,7 @@ public class NewGameButton extends Button {
         skin.addRegions(atlas);
         ButtonStyle style = new ButtonStyle();
         style.up = skin.getDrawable("play_normal");
-        style.down = skin.getDrawable("play_hover");
+        style.down = skin.getDrawable("play_pressed");
 
         setStyle(style);
         setSize(width, height);

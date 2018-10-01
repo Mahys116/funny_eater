@@ -24,7 +24,7 @@ public class PauseButton extends Button {
         skin.addRegions(atlas);
         Button.ButtonStyle style = new Button.ButtonStyle();
         style.up = skin.getDrawable("pause_normal");
-        style.down = skin.getDrawable("pause_hover");
+        style.down = skin.getDrawable("pause_pressed");
 
         setStyle(style);
         setSize(width, height);
