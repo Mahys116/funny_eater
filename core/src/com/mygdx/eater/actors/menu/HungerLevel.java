@@ -30,7 +30,6 @@ public class HungerLevel extends Actor {
 
     @Override
     public void draw(Batch batch, float parentAlpha) {
-//        batch.draw(background, getX(), getY(), getWidth(), getHeight());
         batch.draw(line, getX(),getY(), getWidth()/10 * level, getHeight());
     }
 

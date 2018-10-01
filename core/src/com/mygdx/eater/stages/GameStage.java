@@ -102,7 +102,7 @@ public class GameStage extends Stage {
 
         size = (int) (getWidth() / 10);
 
-        lbl_score = new ScoreLabel((int) (getWidth()/2), (int) getHeight()*3/4);
+        lbl_score = new ScoreLabel((int) (getWidth()/2), (int) getHeight()*3/4, (int) getWidth()/10);
         addActor(lbl_score);
         hunger_level = new HungerLevel(getWidth()/4, getHeight()-size-10, getWidth()/2, size, hunger);
         addActor(hunger_level);

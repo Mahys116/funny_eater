@@ -55,12 +55,30 @@ public class Character extends Actor {
 
     @Override
     public void draw(Batch batch, float parentAlpha) {
-        batch.draw(face_middle, getX()-size/2, getY(), size,vertical_position-getY()+size/2);
+        batch.draw(face_middle, getX()-size/2, getY()+size/4, size,vertical_position-getY());
     }
 
     public void draw_top(Batch batch){
-        batch.draw(face_bottom,getX()-size/2, getY(), size, size/2);
-        batch.draw(face_top, getX()-size/2,vertical_position, size, size/2);
+        if (name.equals("face")) {
+            batch.draw(face_bottom,getX()-size/2, getY(), size, size/2);
+            batch.draw(face_top, getX()-size/2-size*45/200, vertical_position, size*200/147, size*239/147);
+        } else if (name.equals("vegan")) {
+            batch.draw(face_bottom, getX()-size/2, getY(), size, size*77/200);
+            batch.draw(face_top, getX()-size/2-size*32/200,vertical_position, size*243/200, size*286/200);
+
+        } else if (name.equals("pirate")) {
+            batch.draw(face_bottom, getX()-size/2, getY(), size, size*80/200);
+            batch.draw(face_top, getX()-size/2-size*159/200,vertical_position, size*462/200, size*358/200);
+
+        } else if (name.equals("skeleton")) {
+            batch.draw(face_bottom, getX()-size/2, getY(), size, size*79/200);
+            batch.draw(face_top, getX()-size/2-size*25/200,vertical_position, size*251/200, size*253/200);
+
+        } else {
+            batch.draw(face_middle, getX(), getY()+size/2, size,vertical_position-getY());
+            batch.draw(face_bottom,getX(), getY()+size/2, size, size/2);
+            batch.draw(face_top, getX()-size*45/200,vertical_position, size*200/147, size*239/147);
+        }
     }
 
     @Override

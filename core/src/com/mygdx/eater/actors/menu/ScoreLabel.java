@@ -14,9 +14,9 @@ public class ScoreLabel extends Actor {
     private BitmapFont font;
     private int score;
 
-    public ScoreLabel(int x, int y) {
+    public ScoreLabel(int x, int y, int size) {
         setPosition(x, y);
-        font = AssetManager.getFont(768/20);
+        font = AssetManager.getFont(size/2);
         font.getData().setScale(4);
         font.setColor(Color.BLACK);
     }

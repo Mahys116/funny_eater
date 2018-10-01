@@ -1,18 +1,18 @@
 eat.png
-size: 881, 288
+size: 946, 288
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 back_hover
   rotate: false
-  xy: 785, 96
+  xy: 384, 96
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 back_normal
   rotate: false
-  xy: 0, 192
+  xy: 0, 96
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
@@ -26,127 +26,134 @@ hand
   index: -1
 left_hover
   rotate: false
-  xy: 689, 96
+  xy: 818, 0
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 left_normal
   rotate: false
-  xy: 96, 192
+  xy: 288, 96
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 menu_hover
   rotate: false
-  xy: 348, 192
+  xy: 192, 96
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 menu_normal
   rotate: false
-  xy: 599, 192
+  xy: 96, 96
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 ok_hover
   rotate: false
-  xy: 695, 192
+  xy: 635, 96
   size: 155, 96
   orig: 155, 96
   offset: 0, 0
   index: -1
 ok_locked
   rotate: false
-  xy: 444, 192
+  xy: 480, 96
   size: 155, 96
   orig: 155, 96
   offset: 0, 0
   index: -1
 okl_normal
   rotate: false
-  xy: 192, 192
+  xy: 790, 96
   size: 156, 96
   orig: 156, 96
   offset: 0, 0
   index: -1
 pause_hover
   rotate: false
-  xy: 497, 96
+  xy: 50, 0
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 pause_normal
   rotate: false
-  xy: 451, 0
+  xy: 722, 0
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 play2_hover
   rotate: false
-  xy: 259, 0
+  xy: 146, 0
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 play2_normal
   rotate: false
-  xy: 355, 0
+  xy: 242, 0
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 play_hover
   rotate: false
-  xy: 50, 0
+  xy: 0, 192
   size: 209, 96
   orig: 209, 96
   offset: 0, 0
   index: -1
 play_locked
   rotate: false
-  xy: 547, 0
+  xy: 418, 192
   size: 209, 96
   orig: 209, 96
   offset: 0, 0
   index: -1
 play_normal
   rotate: false
-  xy: 0, 96
+  xy: 209, 192
   size: 209, 96
   orig: 209, 96
   offset: 0, 0
   index: -1
 right_hover
   rotate: false
-  xy: 305, 96
+  xy: 338, 0
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 right_normal
   rotate: false
-  xy: 401, 96
+  xy: 626, 0
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 settings_hover
   rotate: false
-  xy: 209, 96
+  xy: 434, 0
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 settings_normal
   rotate: false
-  xy: 593, 96
+  xy: 530, 0
   size: 96, 96
   orig: 96, 96
+  offset: 0, 0
+  index: -1
+start_locked
+  rotate: false
+  xy: 627, 192
+  size: 248, 96
+  orig: 248, 96
   offset: 0, 0
   index: -1

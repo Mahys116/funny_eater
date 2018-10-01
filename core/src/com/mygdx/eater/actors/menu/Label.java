@@ -3,6 +3,7 @@ package com.mygdx.eater.actors.menu;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.mygdx.eater.utils.AssetManager;
@@ -20,6 +21,10 @@ public class Label extends Actor {
         font = AssetManager.getFont(size);
         this.text = text;
         font.setColor(Color.BLACK);
+
+        GlyphLayout glyphLayout = new GlyphLayout();
+        glyphLayout.setText(font,text);
+        setWidth(glyphLayout.width);
     }
 
     @Override
@@ -30,6 +35,13 @@ public class Label extends Actor {
 
     public void setText(String text) {
         this.text = text;
+        GlyphLayout glyphLayout = new GlyphLayout();
+        glyphLayout.setText(font,text);
+        setWidth(glyphLayout.width);
+    }
+
+    public void setColor(Color color) {
+        font.setColor(color);
     }
 
 }

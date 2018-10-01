@@ -2,12 +2,17 @@ package com.mygdx.eater.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.mygdx.eater.Eater;
 import com.mygdx.eater.actors.menu.CharacterSelectButton;
 import com.mygdx.eater.actors.menu.CharacterView;
+import com.mygdx.eater.actors.menu.Label;
 import com.mygdx.eater.actors.menu.MainMenuButton;
 import com.mygdx.eater.actors.menu.NextButton;
 import com.mygdx.eater.actors.menu.PreviousButton;
@@ -20,7 +25,11 @@ public class CharacterScreen implements Screen {
     private final Stage stage;
     private final String[] character_names;
     private final String[] character_descriptions;
+    private final String[] character_conditions;
     private final CharacterSelectButton btn_select;
+    private final Label lbl_character_name;
+    private final Label lbl_character_cond;
+    private final Label lbl_character_desc;
 
     private String current_name;
     private String[] characters;
@@ -37,22 +46,41 @@ public class CharacterScreen implements Screen {
         int size = (int) (stage.getWidth()/10);
 
         MainMenuButton btn_main_menu = new MainMenuButton((int) (stage.getWidth()- size*1.5), (int) (stage.getHeight() - size*1.5), size, size, new CharacterScreen.MainMenuButtonListener());
-        NextButton btn_next = new NextButton((int) (stage.getWidth() - size*2), 0, size*2, size*2, new NextButtonListener());
-        PreviousButton btn_prev = new PreviousButton(0, 0, size*2, size*2, new PreviousButtonListener());
+        NextButton btn_next = new NextButton((int) (stage.getWidth()-size*1.75), (int) (size*0.25),(int) (size*1.5), (int) (size*1.5), new NextButtonListener());
+        PreviousButton btn_prev = new PreviousButton((int) (size*0.25),(int) (size*0.25),(int) (size*1.5), (int) (size*1.5), new PreviousButtonListener());
         btn_select = new CharacterSelectButton((int) (stage.getWidth()/2 - size * 1.614), 0, (int) (size * 1.614*2), size*2, new CharacterScreen.ChoseCharacterListener());
 
+        Label lbl_score = new Label(size, (int) (stage.getHeight()-3*size),"BEST: "+ String.format("%d", PreferencesManager.getHighScore()),size*3/4);
+        Label lbl_total = new Label(size, (int) (stage.getHeight()-4*size),"TOTAL: "+ String.format("%d", PreferencesManager.getTotalScore()),size*3/4);
+
+        lbl_score.setX(stage.getWidth()/2-lbl_score.getWidth()/2);
+        lbl_total.setX(stage.getWidth()/2-lbl_total.getWidth()/2);
+
+        lbl_character_name = new Label(size,(int) (stage.getHeight()-5*size),"",size);
+        lbl_character_cond = new Label(size,(int) (stage.getHeight()-6*size),"",size*2/3);
+        lbl_character_desc = new Label(size,(int) (stage.getHeight()-7*size),"",size/2);
+
+
+        
         stage.addActor(btn_main_menu);
         stage.addActor(btn_next);
         stage.addActor(btn_prev);
         stage.addActor(btn_select);
 
+        stage.addActor(lbl_score);
+        stage.addActor(lbl_total);
+        stage.addActor(lbl_character_name);
+        stage.addActor(lbl_character_cond);
+        stage.addActor(lbl_character_desc);
+
         current_name = PreferencesManager.getCharacterName();
         characters = Constants.getCharacters();
         character_names = Constants.getCharactersFullName();
         character_descriptions = Constants.getCharactersDescriptions();
+        character_conditions = Constants.getCharactersConditions();
         available_chracters = PreferencesManager.updateAvailableCharacters();
         index = java.util.Arrays.asList(characters).indexOf(current_name);
-
+        setCharacterDesc();
         face = new CharacterView(size*2, current_name, stage.getWidth()/2-size);
         stage.addActor(face);
     }
@@ -96,6 +124,15 @@ public class CharacterScreen implements Screen {
 
     }
 
+    public void setCharacterDesc() {
+        lbl_character_name.setText(character_names[index]);
+        lbl_character_desc.setText(character_descriptions[index]);
+        lbl_character_cond.setText(character_conditions[index]);
+
+        lbl_character_name.setX(stage.getWidth()/2-lbl_character_name.getWidth()/2);
+        lbl_character_cond.setX(stage.getWidth()/2-lbl_character_cond.getWidth()/2);
+    }
+
     public class MainMenuButtonListener implements MainMenuButton.MainMenuListener {
         public void onMain() {
             game.setScreen(new MenuScreen(game));
@@ -109,6 +146,12 @@ public class CharacterScreen implements Screen {
             current_name = characters[index];
             face.setCharacter(current_name);
             btn_select.setDisabled(!available_chracters.contains(current_name));
+            setCharacterDesc();
+            if (available_chracters.contains(current_name)) {
+                lbl_character_cond.setColor(Color.BLACK);
+            } else {
+                lbl_character_cond.setColor(Color.GRAY);
+            }
         }
     }
 
@@ -118,6 +161,13 @@ public class CharacterScreen implements Screen {
             if (index < 0) index = characters.length - 1;
             current_name = characters[index];
             face.setCharacter(current_name);
+            btn_select.setDisabled(!available_chracters.contains(current_name));
+            setCharacterDesc();
+            if (available_chracters.contains(current_name)) {
+                lbl_character_cond.setColor(Color.BLACK);
+            } else {
+                lbl_character_cond.setColor(Color.GRAY);
+            }
         }
     }
 

@@ -20,7 +20,7 @@ public class AssetManager {
     }
 
     public static BitmapFont getFont(int size) {
-        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("American Purpose.ttf"));
+        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("2204.ttf"));
         FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
         parameter.size = size;
         BitmapFont font = generator.generateFont(parameter);
