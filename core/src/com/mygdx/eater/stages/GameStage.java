@@ -34,7 +34,7 @@ public class GameStage extends Stage {
     private float hunger;
     private HungerLevel hunger_level;
     private CharactersButton btn_character;
-    private NewGameButton btn_new_game;
+    private ResumeButton btn_new_game;
     private Label lbl_game_end;
     private Label lbl_game_end_highscore;
     private Label lbl_game_end_score;
@@ -43,6 +43,7 @@ public class GameStage extends Stage {
     private TutorialHand hand;
     private int size;
     private Window win_pause;
+    private Window win_end;
 
     public GameStage(ScreenViewport screen, Eater game) {
         super(screen);
@@ -56,11 +57,14 @@ public class GameStage extends Stage {
 
     private void showGameMenu() {
         btn_pause.setVisible(true);
+        lbl_score.setVisible(true);
+        hunger_level.setVisible(true);
 
         win_pause.setVisible(false);
         btn_resume.setVisible(false);
         lbl_game_paused.setVisible(false);
 
+        win_end.setVisible(false);
         btn_character.setVisible(false);
         btn_new_game.setVisible(false);
         lbl_game_end.setVisible(false);
@@ -70,11 +74,14 @@ public class GameStage extends Stage {
 
     private void showPauseMenu() {
         btn_pause.setVisible(false);
+        lbl_score.setVisible(true);
+        hunger_level.setVisible(true);
 
         win_pause.setVisible(true);
         btn_resume.setVisible(true);
         lbl_game_paused.setVisible(true);
 
+        win_end.setVisible(false);
         btn_character.setVisible(false);
         btn_new_game.setVisible(false);
         lbl_game_end.setVisible(false);
@@ -84,11 +91,14 @@ public class GameStage extends Stage {
 
     private void createGameOverMenu() {
         btn_pause.setVisible(false);
+        lbl_score.setVisible(false);
+        hunger_level.setVisible(false);
 
         win_pause.setVisible(false);
         btn_resume.setVisible(false);
         lbl_game_paused.setVisible(false);
 
+        win_end.setVisible(true);
         btn_character.setVisible(true);
         btn_new_game.setVisible(true);
         lbl_game_end.setVisible(true);
@@ -98,6 +108,8 @@ public class GameStage extends Stage {
         int high_score = PreferencesManager.getHighScore();
         lbl_game_end_score.setText("Score: "+ String.format("%d", score));
         lbl_game_end_highscore.setText("Highscore: "+ String.format("%d", high_score));
+        lbl_game_end_score.setX(getWidth()/2 - lbl_game_end_score.getWidth()/2);
+        lbl_game_end_highscore.setX(getWidth()/2 - lbl_game_end_highscore.getWidth()/2);
     }
 
     private void createGameElements() {
@@ -111,11 +123,11 @@ public class GameStage extends Stage {
 
         lbl_score = new ScoreLabel((int) (getWidth()/2 - size/2), (int) (getHeight()-size*2.5), size*2);
         addActor(lbl_score);
-        hunger_level = new HungerLevel(getWidth()/4, getHeight()-size-10, getWidth()/2, size, hunger);
+        hunger_level = new HungerLevel(getWidth()/4, getHeight()-size*5/4, getWidth()/2, size, hunger);
         addActor(hunger_level);
 
         // Menus
-        btn_pause = new PauseButton((int) (getWidth() - size), (int) (getHeight() - size), size, size, new GameStage.PauseButtonListener());
+        btn_pause = new PauseButton((int) (getWidth() - size*1.25), (int) (getHeight() - size*1.25), size, size, new GameStage.PauseButtonListener());
 
         lbl_game_paused = new Label((int) (getWidth()/2-size), (int) (getHeight() - size*5), "Paused", size);
         lbl_game_paused.setColor(Color.WHITE);
@@ -123,13 +135,20 @@ public class GameStage extends Stage {
         btn_resume = new ResumeButton((int) (getWidth()/2), (int) (getHeight()- size*7), size*2, size*2, new GameStage.ResumeButtonListener());
         win_pause = new Window((int) (lbl_game_paused.getX()-size), (int) (getHeight()- size*8.5), (int) (lbl_game_paused.getWidth()+ size*2), size*4);
 
-        lbl_game_end = new Label((int) (getWidth()/2-size), (int) (getHeight()/2+size), "Game Over", (int) (getWidth()/20));
-        btn_new_game = new NewGameButton((int) (getWidth()/2 - size*2.177), 0,(int) (size*2*2.177), size*2, new GameStage.NewGameButtonListener());
+        lbl_game_end = new Label((int) (getWidth()/2-size), (int) (getHeight() - size*3), "GAME OVER", size*3/4);
+        lbl_game_end.setColor(Color.WHITE);
+        lbl_game_end.setX(getWidth()/2 - lbl_game_end.getWidth()/2);
+
+        btn_new_game = new ResumeButton((int) (getWidth()/2), (int) (getHeight() - size*7),(int) (size*2), size*2, new GameStage.NewGameButtonListener());
         btn_character = new CharactersButton((int) (getWidth()-size*1.75), (int) (size*0.25),(int) (size*1.5), (int) (size*1.5), new GameStage.CharactersMenuButtonListener());
-        lbl_game_end_score = new Label((int) (getWidth()/2-size), (int) (getHeight()/2), "", (int) (getWidth()/20));
-        lbl_game_end_highscore = new Label((int) (getWidth()/2-size), (int) (getHeight()/2-size), "Highscore:", (int) (getWidth()/20));
+        lbl_game_end_score = new Label((int) (getWidth()/2-size), (int) (getHeight() - size*4), "", size*3/4);
+        lbl_game_end_score.setColor(Color.WHITE);
+        lbl_game_end_highscore = new Label((int) (getWidth()/2-size), (int) (getHeight()-size*5), "Highscore:", size*3/4);
+        lbl_game_end_highscore.setColor(Color.WHITE);
+        win_end = new Window((int) (lbl_game_paused.getX()-size), (int) (getHeight()- size*8.5), (int) (lbl_game_paused.getWidth()+ size*2), size*6);
 
         addActor(win_pause);
+        addActor(win_end);
         addActor(lbl_game_paused);
         addActor(btn_pause);
         addActor(btn_resume);
@@ -226,8 +245,8 @@ public class GameStage extends Stage {
     }
 
 
-    private class NewGameButtonListener implements NewGameButton.NewGameListener {
-        public void onStart() {
+    private class NewGameButtonListener implements ResumeButton.ResumeListener {
+        public void onResume() {
             initGameParams();
             showGameMenu();
         }

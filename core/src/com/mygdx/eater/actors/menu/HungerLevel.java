@@ -18,18 +18,19 @@ public class HungerLevel extends Actor {
 
     public HungerLevel(float x, float y, float width, float height, float start_level) {
         setBounds(x,y,width,height);
-        TextureAtlas atlas = new AssetManager().getFace();
+        TextureAtlas atlas = new AssetManager().getAtlas();
         Skin skin = new Skin();
         skin.addRegions(atlas);
         level = start_level;
-        background = skin.getRegion("face_middle");
+        background = skin.getRegion("window");
 
-        line = skin.getRegion("face_middle");
+        line = skin.getRegion("hunger");
 
     }
 
     @Override
     public void draw(Batch batch, float parentAlpha) {
+        batch.draw(background, getX(), getY(), getWidth(), getHeight());
         batch.draw(line, getX(),getY(), getWidth()/10 * level, getHeight());
     }
 

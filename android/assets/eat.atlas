@@ -1,5 +1,5 @@
 eat.png
-size: 480, 680
+size: 484, 680
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
@@ -22,6 +22,13 @@ hand
   xy: 0, 0
   size: 50, 65
   orig: 50, 65
+  offset: 0, 0
+  index: -1
+hunger
+  rotate: false
+  xy: 50, 0
+  size: 50, 50
+  orig: 50, 50
   offset: 0, 0
   index: -1
 left_normal
@@ -75,28 +82,28 @@ okl_normal
   index: -1
 pause_normal
   rotate: false
-  xy: 50, 0
+  xy: 288, 96
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 pause_pressed
   rotate: false
-  xy: 288, 96
+  xy: 192, 96
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 play2_normal
   rotate: false
-  xy: 146, 0
+  xy: 100, 0
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 play2_pressed
   rotate: false
-  xy: 242, 0
+  xy: 196, 0
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
@@ -124,14 +131,14 @@ play_pressed
   index: -1
 right_normal
   rotate: false
-  xy: 338, 0
+  xy: 292, 0
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 right_pressed
   rotate: false
-  xy: 192, 96
+  xy: 388, 0
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
