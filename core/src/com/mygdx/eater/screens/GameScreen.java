@@ -14,16 +14,12 @@ import com.mygdx.eater.stages.GameStage;
 
 public class GameScreen implements Screen {
     private final GameStage stage;
-    private final Sprite backgroundSprite;
     private Eater game;
 
     public GameScreen(Eater game) {
         this.game = game;
         stage = new GameStage(new ScreenViewport(), game);
         Gdx.input.setInputProcessor(stage);
-        Texture backgroundTexture = new Texture("background1.png");
-        backgroundSprite = new Sprite(backgroundTexture);
-        backgroundSprite.setSize(stage.getWidth(),stage.getHeight());
     }
     @Override
     public void show() {
@@ -35,9 +31,6 @@ public class GameScreen implements Screen {
     public void render(float delta) {
         stage.act(delta);
         game.batch.begin();
-        stage.getBatch().begin();
-        backgroundSprite.draw(stage.getBatch());
-        stage.getBatch().end();
         stage.draw();
         game.batch.end();
     }

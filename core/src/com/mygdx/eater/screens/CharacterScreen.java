@@ -3,17 +3,20 @@ package com.mygdx.eater.screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.mygdx.eater.Eater;
+import com.mygdx.eater.actors.menu.Background;
 import com.mygdx.eater.actors.menu.CharacterSelectButton;
 import com.mygdx.eater.actors.menu.CharacterView;
 import com.mygdx.eater.actors.menu.Label;
 import com.mygdx.eater.actors.menu.MainMenuButton;
 import com.mygdx.eater.actors.menu.NextButton;
 import com.mygdx.eater.actors.menu.PreviousButton;
+import com.mygdx.eater.actors.menu.Window;
 import com.mygdx.eater.utils.Constants;
 import com.mygdx.eater.utils.PreferencesManager;
 import java.util.ArrayList;
@@ -28,7 +31,6 @@ public class CharacterScreen implements Screen {
     private final Label lbl_character_name;
     private final Label lbl_character_cond;
     private final Label lbl_character_desc;
-    private final Sprite backgroundSprite;
 
     private String current_name;
     private String[] characters;
@@ -41,9 +43,6 @@ public class CharacterScreen implements Screen {
         this.game = game;
         stage = new Stage(new ScreenViewport());
         Gdx.input.setInputProcessor(stage);
-        Texture backgroundTexture = new Texture("background1.png");
-        backgroundSprite = new Sprite(backgroundTexture);
-        backgroundSprite.setSize(stage.getWidth(),stage.getHeight());
 
         int size = (int) (stage.getWidth()/10);
 
@@ -62,13 +61,21 @@ public class CharacterScreen implements Screen {
         lbl_character_cond = new Label(size,(int) (stage.getHeight()-6*size),"",size*2/3);
         lbl_character_desc = new Label(size,(int) (stage.getHeight()-7*size),"",size/2);
 
+        Background background = new Background(stage.getWidth(), stage.getHeight());
+        stage.addActor(background);
+        Window window = new Window(size / 2, (int) (2.5*size), (int) (stage.getWidth() - size), (int) (stage.getHeight() - 5*size));
+        stage.addActor(window);
 
-        
         stage.addActor(btn_main_menu);
         stage.addActor(btn_next);
         stage.addActor(btn_prev);
         stage.addActor(btn_select);
 
+        lbl_score.setColor(Color.WHITE);
+        lbl_total.setColor(Color.WHITE);
+        lbl_character_name.setColor(Color.WHITE);
+        lbl_character_cond.setColor(Color.WHITE);
+        lbl_character_desc.setColor(Color.WHITE);
         stage.addActor(lbl_score);
         stage.addActor(lbl_total);
         stage.addActor(lbl_character_name);
@@ -93,11 +100,10 @@ public class CharacterScreen implements Screen {
 
     @Override
     public void render(float delta) {
+        Gdx.gl.glClearColor(1, 1, 1, 1);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         stage.act(delta);
         game.batch.begin();
-        stage.getBatch().begin();
-        backgroundSprite.draw(stage.getBatch());
-        stage.getBatch().end();
         stage.draw();
         game.batch.end();
     }
@@ -151,9 +157,9 @@ public class CharacterScreen implements Screen {
             btn_select.setDisabled(!available_chracters.contains(current_name));
             setCharacterDesc();
             if (available_chracters.contains(current_name)) {
-                lbl_character_cond.setColor(Color.BLACK);
+                lbl_character_cond.setColor(Color.WHITE);
             } else {
-                lbl_character_cond.setColor(Color.GRAY);
+                lbl_character_cond.setColor(new Color(0xdf1b22FF));
             }
         }
     }
@@ -167,10 +173,11 @@ public class CharacterScreen implements Screen {
             btn_select.setDisabled(!available_chracters.contains(current_name));
             setCharacterDesc();
             if (available_chracters.contains(current_name)) {
-                lbl_character_cond.setColor(Color.BLACK);
+                lbl_character_cond.setColor(Color.WHITE);
             } else {
-                lbl_character_cond.setColor(Color.GRAY);
+                lbl_character_cond.setColor(new Color(0xdf1b22FF));
             }
+
         }
     }
 

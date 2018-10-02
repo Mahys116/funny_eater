@@ -9,6 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.mygdx.eater.Eater;
+import com.mygdx.eater.actors.menu.Background;
 import com.mygdx.eater.actors.menu.CharacterView;
 import com.mygdx.eater.actors.menu.CharactersButton;
 import com.mygdx.eater.actors.menu.Label;
@@ -17,7 +18,6 @@ import com.mygdx.eater.utils.PreferencesManager;
 
 
 public class MenuScreen implements Screen {
-    private final Sprite backgroundSprite;
     private Eater game;
 
     private Stage stage;
@@ -31,13 +31,10 @@ public class MenuScreen implements Screen {
         stage = new Stage(new ScreenViewport());
         Gdx.input.setInputProcessor(stage);
         size = (int) (stage.getWidth()/10);
-        Texture backgroundTexture = new Texture("background1.png");
-        backgroundSprite = new Sprite(backgroundTexture);
-        backgroundSprite.setSize(stage.getWidth(),stage.getHeight());
 
-        int high_score = PreferencesManager.getHighScore();
-        Label lbl_score = new Label((int) (stage.getWidth()/2), (int) (stage.getHeight()/2), String.format("%d", high_score), (int) (stage.getWidth()/10));
-        stage.addActor(lbl_score);
+        Background background = new Background(stage.getWidth(), stage.getHeight());
+        stage.addActor(background);
+
         createButtons();
 
         String current_name = PreferencesManager.getCharacterName();
@@ -56,9 +53,6 @@ public class MenuScreen implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         stage.act(delta);
         game.batch.begin();
-        stage.getBatch().begin();
-        backgroundSprite.draw(stage.getBatch());
-        stage.getBatch().end();
         stage.draw();
         game.batch.end();
 

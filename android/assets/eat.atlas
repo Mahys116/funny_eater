@@ -1,11 +1,11 @@
 eat.png
-size: 881, 288
+size: 480, 680
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 back_normal
   rotate: false
-  xy: 785, 96
+  xy: 384, 192
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
@@ -26,127 +26,134 @@ hand
   index: -1
 left_normal
   rotate: false
-  xy: 689, 96
+  xy: 384, 96
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 left_pressed
   rotate: false
-  xy: 96, 192
+  xy: 288, 192
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 menu_normal
   rotate: false
-  xy: 348, 192
+  xy: 192, 192
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 menu_pressed
   rotate: false
-  xy: 599, 192
+  xy: 96, 192
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 ok_locked
   rotate: false
-  xy: 695, 192
+  xy: 155, 288
   size: 155, 96
   orig: 155, 96
   offset: 0, 0
   index: -1
 ok_pressed
   rotate: false
-  xy: 444, 192
+  xy: 0, 288
   size: 155, 96
   orig: 155, 96
   offset: 0, 0
   index: -1
 okl_normal
   rotate: false
-  xy: 192, 192
+  xy: 310, 288
   size: 156, 96
   orig: 156, 96
   offset: 0, 0
   index: -1
 pause_normal
   rotate: false
-  xy: 497, 96
+  xy: 50, 0
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 pause_pressed
   rotate: false
-  xy: 451, 0
+  xy: 288, 96
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 play2_normal
   rotate: false
-  xy: 259, 0
+  xy: 146, 0
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 play2_pressed
   rotate: false
-  xy: 355, 0
+  xy: 242, 0
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 play_locked
   rotate: false
-  xy: 50, 0
+  xy: 209, 584
   size: 209, 96
   orig: 209, 96
   offset: 0, 0
   index: -1
 play_normal
   rotate: false
-  xy: 547, 0
+  xy: 0, 584
   size: 209, 96
   orig: 209, 96
   offset: 0, 0
   index: -1
 play_pressed
   rotate: false
-  xy: 0, 96
+  xy: 200, 384
   size: 209, 96
   orig: 209, 96
   offset: 0, 0
   index: -1
 right_normal
   rotate: false
-  xy: 305, 96
+  xy: 338, 0
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 right_pressed
   rotate: false
-  xy: 401, 96
+  xy: 192, 96
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 settings_normal
   rotate: false
-  xy: 209, 96
+  xy: 0, 96
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 settings_pressed
   rotate: false
-  xy: 593, 96
+  xy: 96, 96
   size: 96, 96
   orig: 96, 96
+  offset: 0, 0
+  index: -1
+window
+  rotate: false
+  xy: 0, 384
+  size: 200, 200
+  orig: 200, 200
   offset: 0, 0
   index: -1

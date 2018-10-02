@@ -7,6 +7,7 @@ import com.mygdx.eater.Eater;
 import com.mygdx.eater.actors.Character;
 import com.mygdx.eater.actors.Food;
 import com.mygdx.eater.actors.TutorialHand;
+import com.mygdx.eater.actors.menu.Background;
 import com.mygdx.eater.actors.menu.CharactersButton;
 import com.mygdx.eater.actors.menu.HungerLevel;
 import com.mygdx.eater.actors.menu.Label;
@@ -94,6 +95,9 @@ public class GameStage extends Stage {
     }
 
     private void createGameElements() {
+        Background background = new Background(getWidth(), getHeight());
+        addActor(background);
+
         character = new Character(Gdx.graphics.getWidth()/5);
         addActor(character);
 
@@ -115,6 +119,8 @@ public class GameStage extends Stage {
         btn_character = new CharactersButton((int) (getWidth()-size*1.75), (int) (size*0.25),(int) (size*1.5), (int) (size*1.5), new GameStage.CharactersMenuButtonListener());
         lbl_game_end_score = new Label((int) (getWidth()/2-size), (int) (getHeight()/2), "", (int) (getWidth()/20));
         lbl_game_end_highscore = new Label((int) (getWidth()/2-size), (int) (getHeight()/2-size), "Highscore:", (int) (getWidth()/20));
+
+
 
         addActor(lbl_game_paused);
         addActor(btn_pause);
