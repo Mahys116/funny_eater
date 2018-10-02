@@ -16,9 +16,10 @@ public class ScoreLabel extends Actor {
 
     public ScoreLabel(int x, int y, int size) {
         setPosition(x, y);
-        font = AssetManager.getFont(size/2);
-        font.getData().setScale(4);
-        font.setColor(Color.BLACK);
+        font = AssetManager.getFont(size);
+        font.getData();
+        font.setColor(Color.WHITE);
+
     }
 
     @Override
