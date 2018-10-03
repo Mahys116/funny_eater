@@ -12,8 +12,10 @@ import com.mygdx.eater.utils.AssetManager;
 import com.mygdx.eater.utils.Constants;
 import com.mygdx.eater.utils.GameState;
 import com.badlogic.gdx.math.Rectangle;
+import com.mygdx.eater.utils.PreferencesManager;
 
 import java.lang.reflect.Method;
+import java.util.Arrays;
 import java.util.Random;
 
 public class Food extends Actor {

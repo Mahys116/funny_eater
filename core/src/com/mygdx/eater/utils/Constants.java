@@ -7,9 +7,9 @@ public class Constants {
     private final static String[] CHARACTERS_NAME = {"face", "vegan", "pirate", "skeleton"};
     private final static String[] FOOD_NAME = {"meat","hen","cheese","egg","cupcake","cookie","candy","bread","grapes","orange","bone","log","poison"};
     private final static int[] FACE_SCORE = {3, 3, 2, 3, 2, 2, 2, 3, 2, 2, -5, -5, -10};
-    private final static int[] VEGAN_SCORE = {3, 3, 2, 3, 2, 2, 2, 3, 2, 2, -5, -5, -10};
-    private final static int[] PIRATE_SCORE = {3, 3, 2, 3, 2, 2, 2, 3, 2, 2, -5, -5, -10};
-    private final static int[] SKELETON_SCORE = {3, 3, 2, 3, 2, 2, 2, 3, 2, 2, -5, -5, -10};
+    private final static int[] VEGAN_SCORE = {-5, -5, 1, 1, 3, 3, 3, 5, 6, 6, -5, 5, -10};
+    private final static int[] PIRATE_SCORE = {1, 1, 1, 1, 5, 5, 5, 2, 3, 3, -5, -5, -10};
+    private final static int[] SKELETON_SCORE = {5, 5, 0, 0, -5, -5, 1, -10, 2, 2, 5, 5, 5};
     private final static int[] BEAVER_SCORE = {3, 3, 2, 3, 2, 2, 2, 3, 2, 2, -5, -5, -10};
     private final static int[] RABBIT_SCORE = {3, 3, 2, 3, 2, 2, 2, 3, 2, 2, -5, -5, -10};
     private final static int[] ANDROID_SCORE = {3, 3, 2, 3, 2, 2, 2, 3, 2, 2, -5, -5, -10};

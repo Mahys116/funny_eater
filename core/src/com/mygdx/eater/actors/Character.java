@@ -23,7 +23,7 @@ public class Character extends Actor {
     final Rectangle tooth_r;
     protected float x;
     protected float y;
-    protected String name;
+    public String name;
 
     public Character(int characterSize) {
         name = PreferencesManager.getCharacterName();
@@ -102,6 +102,8 @@ public class Character extends Actor {
     public float getY() {
         return y;
     }
+
+    public String getName() {return name;}
 
 
     public void moveTo(float x, float y) {
