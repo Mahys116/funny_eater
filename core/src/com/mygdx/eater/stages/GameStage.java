@@ -253,8 +253,8 @@ public class GameStage extends Stage {
     private class CharactersMenuButtonListener implements CharactersButton.CharactersMenuListener {
         @Override
         public void onCharactersMenu() {
-            game.setScreen(new CharacterScreen(game));
             dispose();
+            game.setScreen(new CharacterScreen(game));
         }
     }
 

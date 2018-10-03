@@ -7,15 +7,14 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.mygdx.eater.utils.AssetManager;
 
-public class CharacterSelectButton extends Button {
+public class CharacterSelectButton extends BasicButton {
     public interface ChoseCharacterListener {
         public void onChose();
     }
-    private Skin skin;
     private CharacterSelectButton.ChoseCharacterListener listener;
     public CharacterSelectButton(int x, int y, int width, int height, CharacterSelectButton.ChoseCharacterListener listener) {
-        TextureAtlas atlas = AssetManager.getAtlas();
-        skin = new Skin();
+        super();
+        Skin skin = new Skin();
         skin.addRegions(atlas);
         Button.ButtonStyle style = new Button.ButtonStyle();
         style.up = skin.getDrawable("okl_normal");
@@ -29,9 +28,9 @@ public class CharacterSelectButton extends Button {
         this.listener = listener;
         addListener(new ClickListener() {
                         @Override
-                        public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                        public void clicked(InputEvent event, float x, float y) {
+                            click.play();
                             touched();
-                            return true;
                         }
 
                     }

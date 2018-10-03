@@ -11,16 +11,15 @@ import com.mygdx.eater.utils.AssetManager;
  * Created by marat on 07.02.18.
  */
 
-public class PauseButton extends Button {
+public class PauseButton extends BasicButton {
     public interface PauseListener {
         void onPause();
     }
-    private Skin skin;
     private PauseButton.PauseListener listener;
 
     public PauseButton(int x, int y, int width, int height, PauseButton.PauseListener listener) {
-        TextureAtlas atlas = new AssetManager().getAtlas();
-        skin = new Skin();
+        super();
+        Skin skin = new Skin();
         skin.addRegions(atlas);
         Button.ButtonStyle style = new Button.ButtonStyle();
         style.up = skin.getDrawable("pause_normal");
@@ -33,9 +32,9 @@ public class PauseButton extends Button {
         this.listener = listener;
         addListener(new ClickListener() {
                         @Override
-                        public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                        public void clicked(InputEvent event, float x, float y) {
+                            click.play();
                             touched();
-                            return true;
                         }
 
                     }

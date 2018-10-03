@@ -9,12 +9,13 @@ import com.mygdx.eater.utils.AssetManager;
 
 public class CharacterView extends Character {
     private final Skin skin;
+    private final TextureAtlas atlas;
     private String character_name;
 
     public CharacterView(int characterSize, String name, float position) {
         super(characterSize);
         character_name = name;
-        TextureAtlas atlas = AssetManager.getFace();
+        atlas = AssetManager.getFace();
         skin = new Skin();
         skin.addRegions(atlas);
 
@@ -25,7 +26,6 @@ public class CharacterView extends Character {
         vertical_position = size*9/4;
         x = position;
         y = vertical_position - size;
-
     }
 
     @Override
@@ -61,5 +61,11 @@ public class CharacterView extends Character {
         face_bottom = skin.getRegion(name + "_bottom");
     }
 
+    @Override
+    public boolean remove() {
+        skin.dispose();
+        atlas.dispose();
+        return super.remove();
+    }
 }
 

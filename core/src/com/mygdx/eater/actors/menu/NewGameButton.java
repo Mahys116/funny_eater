@@ -11,15 +11,15 @@ import com.mygdx.eater.utils.AssetManager;
  * Created by marat on 02.02.18.
  */
 
-public class NewGameButton extends Button {
+public class NewGameButton extends BasicButton {
     public interface NewGameListener {
         public void onStart();
     }
-    private Skin skin;
     private NewGameListener listener;
     public NewGameButton(int x, int y, int width, int height, NewGameListener listener) {
-        TextureAtlas atlas = new AssetManager().getAtlas();
-        skin = new Skin();
+        super();
+
+        Skin skin = new Skin();
         skin.addRegions(atlas);
         ButtonStyle style = new ButtonStyle();
         style.up = skin.getDrawable("play_normal");
@@ -32,9 +32,9 @@ public class NewGameButton extends Button {
         this.listener = listener;
         addListener(new ClickListener() {
             @Override
-            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+            public void clicked(InputEvent event, float x, float y) {
+                click.play();
                 touched();
-                return true;
             }
 
            }

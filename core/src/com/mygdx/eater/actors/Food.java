@@ -1,6 +1,7 @@
 package com.mygdx.eater.actors;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -24,7 +25,6 @@ public class Food extends Actor {
     private static final int BLOCK_RIGHT = 3;
     private final static Random random = new Random();
     protected float rotation;
-    private int rotaion_coef;
     private String[] FOOD_NAME;
     private int[] FOOD_SCORE;
     private final TextureRegion image;
@@ -34,6 +34,8 @@ public class Food extends Actor {
     final Rectangle block;
     private Character character;
     private GameStage stage;
+    private Sound gulp;
+    private Sound gulp_bad;
 
     public interface IncrementWrapper {
         public void incrementScore(int score);
@@ -44,12 +46,11 @@ public class Food extends Actor {
     public Food(int size, int y_start, Character face, Food.IncrementWrapper incrementWrapper, GameStage stage) {
         this.stage = stage;
         rotation = 0;
-        rotaion_coef = 1;
         character = face;
         FOOD_SCORE = Constants.getFoodScoreForCharacter(character.getName());
         FOOD_NAME = Constants.getFood();
 
-        new AssetManager();
+        loadSounds();
         TextureAtlas atlas = AssetManager.getFood();
         Skin skin = new Skin();
         skin.addRegions(atlas);
@@ -67,6 +68,13 @@ public class Food extends Actor {
         this.incrementWrapper = incrementWrapper;
 
         state = ROLL;
+
+
+    }
+
+    private void loadSounds() {
+        gulp = Gdx.audio.newSound(Gdx.files.internal("sounds/gulp.wav"));
+        gulp_bad = Gdx.audio.newSound(Gdx.files.internal("sounds/gulp_bad.wav"));
     }
 
     public int getScore() {
@@ -92,6 +100,12 @@ public class Food extends Actor {
             }else if (block.overlaps(character.tooth_r)) {
                 state = BLOCK_RIGHT;
             }else if (block.overlaps(character.mouth)) {
+                if (getScore() > 0) {
+                    gulp.play();
+                } else {
+                    gulp_bad.play();
+                }
+
                 incrementWrapper.incrementScore(getScore());
                 remove();
             }
@@ -104,5 +118,12 @@ public class Food extends Actor {
             setY(getY() - GameState.getInstance().getSpeed() * delta);
         }
         block.setPosition(getX(),getY());
+    }
+
+    @Override
+    public boolean remove() {
+        gulp.dispose();
+        gulp_bad.dispose();
+        return super.remove();
     }
 }

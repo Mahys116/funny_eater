@@ -7,16 +7,15 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.mygdx.eater.utils.AssetManager;
 
-public class ResumeButton extends Button {
+public class ResumeButton extends BasicButton {
     public interface ResumeListener {
         public void onResume();
     }
-    private Skin skin;
     private ResumeButton.ResumeListener listener;
 
     public ResumeButton(int x, int y, int width, int height, ResumeButton.ResumeListener listener) {
-        TextureAtlas atlas = new AssetManager().getAtlas();
-        skin = new Skin();
+        super();
+        Skin skin = new Skin();
         skin.addRegions(atlas);
         Button.ButtonStyle style = new Button.ButtonStyle();
         style.up = skin.getDrawable("play2_normal");
@@ -29,9 +28,9 @@ public class ResumeButton extends Button {
         this.listener = listener;
         addListener(new ClickListener() {
                         @Override
-                        public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                        public void clicked(InputEvent event, float x, float y) {
+                            click.play();
                             touched();
-                            return true;
                         }
 
                     }
