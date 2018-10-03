@@ -12,16 +12,11 @@ import com.mygdx.eater.utils.PreferencesManager;
 
 public class Eater extends Game {
 	public SpriteBatch batch;
-	TextureAtlas atlas;
-	public Skin skin;
-
 
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
-		atlas = new AssetManager().getAtlas();
-		skin = new Skin();
-		skin.addRegions(atlas);
+
 		PreferencesManager.incGameRuns();
 		Gdx.app.log("game_runs", String.format("%d", PreferencesManager.getGameRuns()));
 		this.setScreen(new MenuScreen(this));
