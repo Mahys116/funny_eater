@@ -7,6 +7,8 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.mygdx.eater.screens.CharacterScreen;
+import com.mygdx.eater.screens.GameScreen;
 import com.mygdx.eater.screens.MenuScreen;
 import com.mygdx.eater.utils.AssetManager;
 import com.mygdx.eater.utils.PreferencesManager;
@@ -14,6 +16,10 @@ import com.mygdx.eater.utils.PreferencesManager;
 public class Eater extends Game {
 	public SpriteBatch batch;
 	public Music music;
+
+	private MenuScreen screen_menu;
+	private GameScreen screen_game;
+	private CharacterScreen screen_character;
 
 	@Override
 	public void create () {
@@ -26,7 +32,10 @@ public class Eater extends Game {
 		if (PreferencesManager.getSound()) {
 			music.play();
 		}
-		this.setScreen(new MenuScreen(this));
+		screen_menu = new MenuScreen(this);
+		screen_game = new GameScreen(this);
+		screen_character = new CharacterScreen(this);
+		this.setScreen(screen_menu);
 	}
 
 	@Override
@@ -37,5 +46,17 @@ public class Eater extends Game {
 	@Override
 	public void dispose () {
 		batch.dispose();
+	}
+
+	public void setScreen(String screen_name) {
+		if (screen_name.equals("menu")) {
+			this.setScreen(screen_menu);
+		} else if (screen_name.equals("game")) {
+			screen_game.stage.initGameParams();
+			screen_game.stage.showGameMenu();
+			this.setScreen(screen_game);
+		} else {
+			this.setScreen(screen_character);
+		}
 	}
 }

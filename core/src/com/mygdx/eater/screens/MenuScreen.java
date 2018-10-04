@@ -21,16 +21,14 @@ import com.mygdx.eater.utils.PreferencesManager;
 public class MenuScreen implements Screen {
     private Eater game;
 
-    private Stage stage;
-//    private Button btn_new_game;
-//    private Button button_characters;
+    public Stage stage;
     private int size;
     private CharacterView face;
 
     public MenuScreen(final Eater game) {
         this.game = game;
         stage = new Stage(new ScreenViewport());
-        Gdx.input.setInputProcessor(stage);
+
         size = (int) (stage.getWidth()/10);
 
         Background background = new Background(stage.getWidth(), stage.getHeight());
@@ -45,7 +43,7 @@ public class MenuScreen implements Screen {
 
     @Override
     public void show() {
-
+        Gdx.input.setInputProcessor(stage);
     }
 
     @Override
@@ -98,16 +96,14 @@ public class MenuScreen implements Screen {
 
     public class NewGameButtonListener implements NewGameButton.NewGameListener {
         public void onStart() {
-            game.setScreen(new GameScreen(game));
-            dispose();
+            game.setScreen("game");
         }
     }
 
     public class CharactersMenuButtonListener implements CharactersButton.CharactersMenuListener {
         @Override
         public void onCharactersMenu() {
-            game.setScreen(new CharacterScreen(game));
-            dispose();
+            game.setScreen("character");
         }
     }
 

@@ -13,18 +13,16 @@ import com.mygdx.eater.stages.GameStage;
  */
 
 public class GameScreen implements Screen {
-    private final GameStage stage;
+    public final GameStage stage;
     private Eater game;
 
     public GameScreen(Eater game) {
         this.game = game;
         stage = new GameStage(new ScreenViewport(), game);
-        Gdx.input.setInputProcessor(stage);
     }
     @Override
     public void show() {
-
-
+        Gdx.input.setInputProcessor(stage);
     }
 
     @Override

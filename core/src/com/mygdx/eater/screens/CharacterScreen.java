@@ -24,7 +24,7 @@ import java.util.ArrayList;
 
 public class CharacterScreen implements Screen {
     private final Eater game;
-    private final Stage stage;
+    public Stage stage;
     private final String[] character_names;
     private final String[] character_descriptions;
     private final String[] character_conditions;
@@ -43,7 +43,6 @@ public class CharacterScreen implements Screen {
     public CharacterScreen(final Eater game) {
         this.game = game;
         stage = new Stage(new ScreenViewport());
-        Gdx.input.setInputProcessor(stage);
 
         int size = (int) (stage.getWidth()/10);
 
@@ -96,7 +95,7 @@ public class CharacterScreen implements Screen {
     }
     @Override
     public void show() {
-
+        Gdx.input.setInputProcessor(stage);
     }
 
     @Override
@@ -148,8 +147,7 @@ public class CharacterScreen implements Screen {
 
     public class MainMenuButtonListener implements MainMenuButton.MainMenuListener {
         public void onMain() {
-            dispose();
-            game.setScreen(new MenuScreen(game));
+            game.setScreen("menu");
         }
     }
 

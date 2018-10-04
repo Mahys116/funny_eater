@@ -89,6 +89,7 @@ public class Food extends Actor {
     @Override
     public void act(float delta) {
         if (GameState.getInstance().isPaused()) return;
+        if (GameState.getInstance().isInit()) remove();
         if (getX() > getWidth()*10 || getY() < 0) remove();
 
         if (state == ROLL) {

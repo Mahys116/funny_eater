@@ -3,7 +3,6 @@ package com.mygdx.eater.stages;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.mygdx.eater.Eater;
 import com.mygdx.eater.actors.Character;
@@ -50,14 +49,12 @@ public class GameStage extends Stage {
     public GameStage(ScreenViewport screen, Eater game) {
         super(screen);
         this.game = game;
-        initGameParams();
         createGameElements();
+        initGameParams();
         showGameMenu();
-        rotation = 0;
-        rotation_coef = 1;
     }
 
-    private void showGameMenu() {
+    public void showGameMenu() {
         btn_pause.setVisible(true);
         lbl_score.setVisible(true);
         hunger_level.setVisible(true);
@@ -171,10 +168,13 @@ public class GameStage extends Stage {
 
     }
 
-    private void initGameParams() {
+    public void initGameParams() {
+        rotation = 0;
+        rotation_coef = 1;
         food_delta = 0;
         score = 0;
         hunger = 7;
+        hunger_level.setLevel(hunger);
         GameState.getInstance().init();
         GameState.getInstance().setSpeed(200);
     }
@@ -210,7 +210,6 @@ public class GameStage extends Stage {
         lbl_score.setScore(score);
         hunger_level.setLevel(hunger);
         rotateFood(delta);
-
     }
 
     private void createFood() {
@@ -261,8 +260,7 @@ public class GameStage extends Stage {
     private class CharactersMenuButtonListener implements CharactersButton.CharactersMenuListener {
         @Override
         public void onCharactersMenu() {
-            dispose();
-            game.setScreen(new CharacterScreen(game));
+            game.setScreen("character");
         }
     }
 
