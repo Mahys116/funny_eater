@@ -72,7 +72,7 @@ public class GameStage extends Stage {
         lbl_game_end_score.setVisible(false);
     }
 
-    private void showPauseMenu() {
+    public void showPauseMenu() {
         btn_pause.setVisible(false);
         lbl_score.setVisible(true);
         hunger_level.setVisible(true);

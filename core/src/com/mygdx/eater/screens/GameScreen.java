@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.mygdx.eater.Eater;
 import com.mygdx.eater.stages.GameStage;
+import com.mygdx.eater.utils.GameState;
 
 /**
  * Created by marat on 28.01.18.
@@ -40,7 +41,10 @@ public class GameScreen implements Screen {
 
     @Override
     public void pause() {
-
+        if (GameState.getInstance().isGameRunning()) {
+            stage.showPauseMenu();
+            GameState.getInstance().pause();
+        }
     }
 
     @Override

@@ -54,6 +54,7 @@ public class GameState {
 
     public boolean isGameOver() {return state == GAME_OVER;}
 
+    public boolean isGameRunning() { return state == GAME_RUNNING;}
 
     public void setSpeed(float speed) {
         this.speed = speed;
