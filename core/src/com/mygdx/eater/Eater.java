@@ -50,6 +50,7 @@ public class Eater extends Game {
 
 	public void setScreen(String screen_name) {
 		if (screen_name.equals("menu")) {
+			screen_menu.initParams();
 			this.setScreen(screen_menu);
 		} else if (screen_name.equals("game")) {
 			screen_game.stage.initGameParams();

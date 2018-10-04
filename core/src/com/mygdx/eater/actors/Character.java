@@ -26,14 +26,7 @@ public class Character extends Actor {
     public String name;
 
     public Character(int characterSize) {
-        name = PreferencesManager.getCharacterName();
-        TextureAtlas atlas = AssetManager.getFace();
-        Skin skin = new Skin();
-        skin.addRegions(atlas);
-
-        face_top = skin.getRegion(name+"_top");
-        face_middle = skin.getRegion(name+"_middle");
-        face_bottom = skin.getRegion(name+"_bottom");
+        setCharacter();
         size = characterSize;
         vertical_position = size*9/4;
         x = Gdx.graphics.getWidth()/2;
@@ -112,5 +105,16 @@ public class Character extends Actor {
         mouth.setPosition(x-size/2+1, y);
         tooth_l.setPosition(x-size/2, y);
         tooth_r.setPosition(x+size/2, y);
+    }
+
+    public void setCharacter() {
+        name = PreferencesManager.getCharacterName();
+        TextureAtlas atlas = AssetManager.getFace();
+        Skin skin = new Skin();
+        skin.addRegions(atlas);
+
+        face_top = skin.getRegion(name+"_top");
+        face_middle = skin.getRegion(name+"_middle");
+        face_bottom = skin.getRegion(name+"_bottom");
     }
 }

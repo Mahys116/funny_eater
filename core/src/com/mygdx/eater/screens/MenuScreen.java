@@ -19,6 +19,7 @@ import com.mygdx.eater.utils.PreferencesManager;
 
 
 public class MenuScreen implements Screen {
+    private final Background background;
     private Eater game;
 
     public Stage stage;
@@ -31,7 +32,7 @@ public class MenuScreen implements Screen {
 
         size = (int) (stage.getWidth()/10);
 
-        Background background = new Background(stage.getWidth(), stage.getHeight());
+        background = new Background(stage.getWidth(), stage.getHeight());
         stage.addActor(background);
 
         createButtons();
@@ -107,5 +108,20 @@ public class MenuScreen implements Screen {
         }
     }
 
+    public void initParams() {
+        face.setCharacter(PreferencesManager.getCharacterName());
+        updateBackground();
+    }
+
+    private void updateBackground() {
+        String current_name = PreferencesManager.getCharacterName();
+        if (current_name.equals("face") || current_name.equals("vegan")) {
+            background.setBackgroundSprite(0);
+        } else if (current_name.equals("pirate")) {
+            background.setBackgroundSprite(1);
+        } else if (current_name.equals("skeleton")) {
+            background.setBackgroundSprite(2);
+        }
+    }
 
 }

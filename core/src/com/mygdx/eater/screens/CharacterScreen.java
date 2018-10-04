@@ -24,6 +24,7 @@ import java.util.ArrayList;
 
 public class CharacterScreen implements Screen {
     private final Eater game;
+    private final Background background;
     public Stage stage;
     private final String[] character_names;
     private final String[] character_descriptions;
@@ -61,7 +62,7 @@ public class CharacterScreen implements Screen {
         lbl_character_cond = new Label(size,(int) (stage.getHeight()-6*size),"",size*2/3);
         lbl_character_desc = new Label(size,(int) (stage.getHeight()-7*size),"",size/2);
 
-        Background background = new Background(stage.getWidth(), stage.getHeight());
+        background = new Background(stage.getWidth(), stage.getHeight());
         stage.addActor(background);
         Window window = new Window(size / 2, (int) (2.5*size), (int) (stage.getWidth() - size), (int) (stage.getHeight() - 5*size));
         stage.addActor(window);
@@ -163,6 +164,7 @@ public class CharacterScreen implements Screen {
             } else {
                 lbl_character_cond.setColor(new Color(0xdf1b22FF));
             }
+            updateBackground();
         }
     }
 
@@ -179,13 +181,23 @@ public class CharacterScreen implements Screen {
             } else {
                 lbl_character_cond.setColor(new Color(0xdf1b22FF));
             }
-
+            updateBackground();
         }
     }
 
     public class ChoseCharacterListener implements CharacterSelectButton.ChoseCharacterListener {
         public void onChose() {
             PreferencesManager.setCharacterName(current_name);
+        }
+    }
+
+    private void updateBackground() {
+        if (current_name.equals("face") || current_name.equals("vegan")) {
+            background.setBackgroundSprite(0);
+        } else if (current_name.equals("pirate")) {
+            background.setBackgroundSprite(1);
+        } else if (current_name.equals("skeleton")) {
+            background.setBackgroundSprite(2);
         }
     }
 

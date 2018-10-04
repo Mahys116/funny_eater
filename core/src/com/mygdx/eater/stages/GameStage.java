@@ -45,6 +45,7 @@ public class GameStage extends Stage {
     private Window win_pause;
     private Window win_end;
     private SoundButton btn_sound;
+    private Background background;
 
     public GameStage(ScreenViewport screen, Eater game) {
         super(screen);
@@ -115,7 +116,7 @@ public class GameStage extends Stage {
     }
 
     private void createGameElements() {
-        Background background = new Background(getWidth(), getHeight());
+        background = new Background(getWidth(), getHeight());
         addActor(background);
 
         character = new Character(Gdx.graphics.getWidth()/5);
@@ -169,6 +170,8 @@ public class GameStage extends Stage {
     }
 
     public void initGameParams() {
+        character.setCharacter();
+        updateBackground();
         rotation = 0;
         rotation_coef = 1;
         food_delta = 0;
@@ -264,4 +267,14 @@ public class GameStage extends Stage {
         }
     }
 
+    private void updateBackground() {
+        String current_name = PreferencesManager.getCharacterName();
+        if (current_name.equals("face") || current_name.equals("vegan")) {
+            background.setBackgroundSprite(0);
+        } else if (current_name.equals("pirate")) {
+            background.setBackgroundSprite(1);
+        } else if (current_name.equals("skeleton")) {
+            background.setBackgroundSprite(2);
+        }
+    }
 }
