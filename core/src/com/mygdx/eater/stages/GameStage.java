@@ -10,6 +10,7 @@ import com.mygdx.eater.actors.Food;
 import com.mygdx.eater.actors.TutorialHand;
 import com.mygdx.eater.actors.menu.Background;
 import com.mygdx.eater.actors.menu.CharactersButton;
+import com.mygdx.eater.actors.menu.HomeButton;
 import com.mygdx.eater.actors.menu.HungerLevel;
 import com.mygdx.eater.actors.menu.Label;
 import com.mygdx.eater.actors.menu.PauseButton;
@@ -46,6 +47,7 @@ public class GameStage extends Stage {
     private Window win_end;
     private SoundButton btn_sound;
     private Background background;
+    private HomeButton btn_home;
 
     public GameStage(ScreenViewport screen, Eater game) {
         super(screen);
@@ -64,6 +66,7 @@ public class GameStage extends Stage {
         btn_resume.setVisible(false);
         lbl_game_paused.setVisible(false);
         btn_sound.setVisible(false);
+        btn_home.setVisible(false);
 
         win_end.setVisible(false);
         btn_character.setVisible(false);
@@ -82,6 +85,7 @@ public class GameStage extends Stage {
         btn_resume.setVisible(true);
         lbl_game_paused.setVisible(true);
         btn_sound.setVisible(true);
+        btn_home.setVisible(true);
 
         win_end.setVisible(false);
         btn_character.setVisible(false);
@@ -100,6 +104,7 @@ public class GameStage extends Stage {
         btn_resume.setVisible(false);
         lbl_game_paused.setVisible(false);
         btn_sound.setVisible(false);
+        btn_home.setVisible(true);
 
         win_end.setVisible(true);
         btn_character.setVisible(true);
@@ -138,12 +143,13 @@ public class GameStage extends Stage {
         btn_resume = new ResumeButton((int) (getWidth()/2), (int) (getHeight()- size*7), size, size, new GameStage.ResumeButtonListener());
         win_pause = new Window((int) (lbl_game_paused.getX()-size), (int) (getHeight()- size*8.5), (int) (lbl_game_paused.getWidth()+ size*2), size*4);
         btn_sound = new SoundButton((int) (getWidth()/2-size*7/4), (int) (getHeight() - size*7.5), size, size, game);
+        btn_home = new HomeButton((int) (getWidth()/2+size*3/4), (int) (getHeight() - size*7.5), size, size, new GameStage.HomeButtonListener());
 
         lbl_game_end = new Label((int) (getWidth()/2-size), (int) (getHeight() - size*3), "GAME OVER", size*3/4);
         lbl_game_end.setColor(Color.WHITE);
         lbl_game_end.setX(getWidth()/2 - lbl_game_end.getWidth()/2);
 
-        btn_new_game = new ResumeButton((int) (getWidth()/2), (int) (getHeight() - size*7), size*2, size*2, new GameStage.NewGameButtonListener());
+        btn_new_game = new ResumeButton((int) (getWidth()/2), (int) (getHeight() - size*7), size, size, new GameStage.NewGameButtonListener());
         btn_character = new CharactersButton((int) (getWidth()-size*1.75), (int) (size*0.25),(int) (size*1.5), (int) (size*1.5), new GameStage.CharactersMenuButtonListener());
         lbl_game_end_score = new Label((int) (getWidth()/2-size), (int) (getHeight() - size*4), "", size*3/4);
         lbl_game_end_score.setColor(Color.WHITE);
@@ -152,8 +158,9 @@ public class GameStage extends Stage {
         win_end = new Window((int) (lbl_game_paused.getX()-size), (int) (getHeight()- size*8.5), (int) (lbl_game_paused.getWidth()+ size*2), size*6);
 
         addActor(win_pause);
-        addActor(btn_sound);
         addActor(win_end);
+        addActor(btn_sound);
+        addActor(btn_home);
         addActor(lbl_game_paused);
         addActor(btn_pause);
         addActor(btn_resume);
@@ -257,6 +264,13 @@ public class GameStage extends Stage {
         public void onResume() {
             initGameParams();
             showGameMenu();
+        }
+    }
+
+    private class HomeButtonListener implements HomeButton.HomeButtonListener {
+        @Override
+        public void onMain() {
+            game.setScreen("menu");
         }
     }
 

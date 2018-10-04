@@ -188,6 +188,7 @@ public class CharacterScreen implements Screen {
     public class ChoseCharacterListener implements CharacterSelectButton.ChoseCharacterListener {
         public void onChose() {
             PreferencesManager.setCharacterName(current_name);
+            game.setScreen("menu");
         }
     }
 
