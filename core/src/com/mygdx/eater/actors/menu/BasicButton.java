@@ -5,6 +5,7 @@ import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.mygdx.eater.utils.AssetManager;
+import com.mygdx.eater.utils.PreferencesManager;
 
 /**
  * Created by marat on 04.10.18.

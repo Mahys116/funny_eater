@@ -3,6 +3,7 @@ package com.mygdx.eater.stages;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.mygdx.eater.Eater;
 import com.mygdx.eater.actors.Character;
@@ -15,6 +16,7 @@ import com.mygdx.eater.actors.menu.Label;
 import com.mygdx.eater.actors.menu.PauseButton;
 import com.mygdx.eater.actors.menu.ResumeButton;
 import com.mygdx.eater.actors.menu.ScoreLabel;
+import com.mygdx.eater.actors.menu.SoundButton;
 import com.mygdx.eater.actors.menu.Window;
 import com.mygdx.eater.screens.CharacterScreen;
 import com.mygdx.eater.utils.GameState;
@@ -43,6 +45,7 @@ public class GameStage extends Stage {
     private int size;
     private Window win_pause;
     private Window win_end;
+    private SoundButton btn_sound;
 
     public GameStage(ScreenViewport screen, Eater game) {
         super(screen);
@@ -62,6 +65,7 @@ public class GameStage extends Stage {
         win_pause.setVisible(false);
         btn_resume.setVisible(false);
         lbl_game_paused.setVisible(false);
+        btn_sound.setVisible(false);
 
         win_end.setVisible(false);
         btn_character.setVisible(false);
@@ -79,6 +83,7 @@ public class GameStage extends Stage {
         win_pause.setVisible(true);
         btn_resume.setVisible(true);
         lbl_game_paused.setVisible(true);
+        btn_sound.setVisible(true);
 
         win_end.setVisible(false);
         btn_character.setVisible(false);
@@ -96,6 +101,7 @@ public class GameStage extends Stage {
         win_pause.setVisible(false);
         btn_resume.setVisible(false);
         lbl_game_paused.setVisible(false);
+        btn_sound.setVisible(false);
 
         win_end.setVisible(true);
         btn_character.setVisible(true);
@@ -131,8 +137,9 @@ public class GameStage extends Stage {
         lbl_game_paused = new Label((int) (getWidth()/2-size), (int) (getHeight() - size*5), "PAUSED", size);
         lbl_game_paused.setColor(Color.WHITE);
         lbl_game_paused.setX(getWidth()/2 - lbl_game_paused.getWidth()/2);
-        btn_resume = new ResumeButton((int) (getWidth()/2), (int) (getHeight()- size*7), size*2, size*2, new GameStage.ResumeButtonListener());
+        btn_resume = new ResumeButton((int) (getWidth()/2), (int) (getHeight()- size*7), size, size, new GameStage.ResumeButtonListener());
         win_pause = new Window((int) (lbl_game_paused.getX()-size), (int) (getHeight()- size*8.5), (int) (lbl_game_paused.getWidth()+ size*2), size*4);
+        btn_sound = new SoundButton((int) (getWidth()/2-size*7/4), (int) (getHeight() - size*7.5), size, size, game);
 
         lbl_game_end = new Label((int) (getWidth()/2-size), (int) (getHeight() - size*3), "GAME OVER", size*3/4);
         lbl_game_end.setColor(Color.WHITE);
@@ -147,6 +154,7 @@ public class GameStage extends Stage {
         win_end = new Window((int) (lbl_game_paused.getX()-size), (int) (getHeight()- size*8.5), (int) (lbl_game_paused.getWidth()+ size*2), size*6);
 
         addActor(win_pause);
+        addActor(btn_sound);
         addActor(win_end);
         addActor(lbl_game_paused);
         addActor(btn_pause);

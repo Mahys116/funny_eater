@@ -14,6 +14,7 @@ import com.mygdx.eater.actors.menu.CharacterView;
 import com.mygdx.eater.actors.menu.CharactersButton;
 import com.mygdx.eater.actors.menu.Label;
 import com.mygdx.eater.actors.menu.NewGameButton;
+import com.mygdx.eater.actors.menu.SoundButton;
 import com.mygdx.eater.utils.PreferencesManager;
 
 
@@ -21,8 +22,8 @@ public class MenuScreen implements Screen {
     private Eater game;
 
     private Stage stage;
-    private Button btn_new_game;
-    private Button button_characters;
+//    private Button btn_new_game;
+//    private Button button_characters;
     private int size;
     private CharacterView face;
 
@@ -85,11 +86,14 @@ public class MenuScreen implements Screen {
 
 
     private void createButtons() {
-        btn_new_game = new NewGameButton((int) (stage.getWidth()/2 - size*2.177), 0,(int) (size*2*2.177), size*2, new NewGameButtonListener());
+        Button btn_new_game = new NewGameButton((int) (stage.getWidth()/2 - size*2.177), 0,(int) (size*2*2.177), size*2, new NewGameButtonListener());
         stage.addActor(btn_new_game);
 
-        button_characters = new CharactersButton((int) (stage.getWidth()-size*1.75), (int) (size*0.25),(int) (size*1.5), (int) (size*1.5), new CharactersMenuButtonListener());
+        Button button_characters = new CharactersButton((int) (stage.getWidth()-size*1.75), (int) (size*0.25),(int) (size*1.5), (int) (size*1.5), new CharactersMenuButtonListener());
         stage.addActor(button_characters);
+
+        Button button_sound = new SoundButton((int) (stage.getWidth()-size), (int) (stage.getHeight()*2/3), size, size, game);
+        stage.addActor(button_sound);
     }
 
     public class NewGameButtonListener implements NewGameButton.NewGameListener {

@@ -88,6 +88,19 @@ public class PreferencesManager {
         return getAvailableCharacters();
     }
 
+    public static boolean getSound() {
+        Preferences prefs = Gdx.app.getPreferences("preferences");
+        return prefs.getBoolean("sound", true);
+    }
+
+    public static boolean switchSound() {
+        Preferences prefs = Gdx.app.getPreferences("preferences");
+        boolean sound = !prefs.getBoolean("sound", true);
+        prefs.putBoolean("sound", sound);
+        prefs.flush();
+        return sound;
+    }
+
     private static void addAvailableCharacter(String character) {
         Preferences prefs = Gdx.app.getPreferences("preferences");
         ArrayList<String> characters = getAvailableCharacters();

@@ -6,7 +6,6 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.mygdx.eater.stages.GameStage;
 import com.mygdx.eater.utils.AssetManager;
@@ -15,8 +14,6 @@ import com.mygdx.eater.utils.GameState;
 import com.badlogic.gdx.math.Rectangle;
 import com.mygdx.eater.utils.PreferencesManager;
 
-import java.lang.reflect.Method;
-import java.util.Arrays;
 import java.util.Random;
 
 public class Food extends Actor {
@@ -101,9 +98,9 @@ public class Food extends Actor {
                 state = BLOCK_RIGHT;
             }else if (block.overlaps(character.mouth)) {
                 if (getScore() > 0) {
-                    gulp.play();
+                    if (PreferencesManager.getSound()) {gulp.play();}
                 } else {
-                    gulp_bad.play();
+                    if (PreferencesManager.getSound()) {gulp_bad.play();}
                 }
 
                 incrementWrapper.incrementScore(getScore());
