@@ -18,7 +18,6 @@ import com.mygdx.eater.actors.menu.ResumeButton;
 import com.mygdx.eater.actors.menu.ScoreLabel;
 import com.mygdx.eater.actors.menu.SoundButton;
 import com.mygdx.eater.actors.menu.Window;
-import com.mygdx.eater.screens.CharacterScreen;
 import com.mygdx.eater.utils.GameState;
 import com.mygdx.eater.utils.PreferencesManager;
 
@@ -115,7 +114,7 @@ public class GameStage extends Stage {
 
         int high_score = PreferencesManager.getHighScore();
         lbl_game_end_score.setText(String.format("SCORE: %d", score));
-        lbl_game_end_highscore.setText(String.format("BEST: %d", high_score));;
+        lbl_game_end_highscore.setText(String.format("BEST: %d", high_score));
         lbl_game_end_score.setX(getWidth()/2 - lbl_game_end_score.getWidth()/2);
         lbl_game_end_highscore.setX(getWidth()/2 - lbl_game_end_highscore.getWidth()/2);
     }

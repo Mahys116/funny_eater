@@ -5,15 +5,12 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.InputListener;
-import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.mygdx.eater.utils.AssetManager;
 import com.mygdx.eater.utils.GameState;
 
 public class TutorialHand extends Actor {
-    public int direction;
+    private int direction;
     private float max_y;
     private TextureRegion image;
     private Character character;
