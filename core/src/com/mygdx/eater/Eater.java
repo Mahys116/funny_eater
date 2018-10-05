@@ -35,7 +35,7 @@ public class Eater extends Game {
 		screen_menu = new MenuScreen(this);
 		screen_game = new GameScreen(this);
 		screen_character = new CharacterScreen(this);
-		this.setScreen(screen_menu);
+		this.setScreen("menu");
 	}
 
 	@Override

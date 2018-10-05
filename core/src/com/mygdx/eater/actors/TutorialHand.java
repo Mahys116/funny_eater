@@ -41,12 +41,10 @@ public class TutorialHand extends Actor {
                     (Gdx.graphics.getHeight() - Gdx.input.getY()) <= (character.vertical_position)) {
                 GameState.getInstance().resume();
                 setVisible(false);
-                Gdx.app.debug("game state", "resume");
             }
         }
         if (!GameState.getInstance().isInit()) return;
 
-        Gdx.app.debug("Hand y", String.valueOf(getY()));
         if (getY() > max_y){ direction = -1; }
         else if (getY() <= 10) { direction = 1; }
 

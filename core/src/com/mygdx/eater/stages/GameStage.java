@@ -140,17 +140,17 @@ public class GameStage extends Stage {
         lbl_game_paused = new Label((int) (getWidth()/2-size), (int) (getHeight() - size*5), "PAUSED", size);
         lbl_game_paused.setColor(Color.WHITE);
         lbl_game_paused.setX(getWidth()/2 - lbl_game_paused.getWidth()/2);
-        btn_resume = new ResumeButton((int) (getWidth()/2), (int) (getHeight()- size*7), size, size, new GameStage.ResumeButtonListener());
+        btn_resume = new ResumeButton((int) (getWidth()/2), (int) (getHeight()- size*7), size*3/2, size*3/2, new GameStage.ResumeButtonListener());
+        btn_sound = new SoundButton((int) (getWidth()/2-size*2.5), (int) (getHeight() - size*7.75), size*3/2, size*3/2, game);
+        btn_home = new HomeButton((int) (getWidth()/2+size), (int) (getHeight() - size*7.75), size*3/2, size*3/2, new GameStage.HomeButtonListener());
         win_pause = new Window((int) (lbl_game_paused.getX()-size), (int) (getHeight()- size*8.5), (int) (lbl_game_paused.getWidth()+ size*2), size*4);
-        btn_sound = new SoundButton((int) (getWidth()/2-size*7/4), (int) (getHeight() - size*7.5), size, size, game);
-        btn_home = new HomeButton((int) (getWidth()/2+size*3/4), (int) (getHeight() - size*7.5), size, size, new GameStage.HomeButtonListener());
 
         lbl_game_end = new Label((int) (getWidth()/2-size), (int) (getHeight() - size*3), "GAME OVER", size*3/4);
         lbl_game_end.setColor(Color.WHITE);
         lbl_game_end.setX(getWidth()/2 - lbl_game_end.getWidth()/2);
 
-        btn_new_game = new ResumeButton((int) (getWidth()/2), (int) (getHeight() - size*7), size, size, new GameStage.NewGameButtonListener());
-        btn_character = new CharactersButton((int) (getWidth()-size*1.75), (int) (size*0.25),(int) (size*1.5), (int) (size*1.5), new GameStage.CharactersMenuButtonListener());
+        btn_new_game = new ResumeButton((int) (getWidth()/2), (int) (getHeight() - size*7), size*3/2, size*3/2, new GameStage.NewGameButtonListener());
+        btn_character = new CharactersButton((int) (getWidth()/2-size*2.5), (int) (getHeight() - size*7.75), size*3/2, size*3/2, new GameStage.CharactersMenuButtonListener());
         lbl_game_end_score = new Label((int) (getWidth()/2-size), (int) (getHeight() - size*4), "", size*3/4);
         lbl_game_end_score.setColor(Color.WHITE);
         lbl_game_end_highscore = new Label((int) (getWidth()/2-size), (int) (getHeight()-size*5), "BEST:", size*3/4);
