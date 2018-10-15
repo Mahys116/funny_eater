@@ -6,6 +6,7 @@ import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.eater.screens.CharacterScreen;
 import com.mygdx.eater.screens.GameScreen;
+import com.mygdx.eater.screens.LoadScreen;
 import com.mygdx.eater.screens.MenuScreen;
 import com.mygdx.eater.utils.PreferencesManager;
 
@@ -20,18 +21,10 @@ public class Eater extends Game {
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
-
+		this.setScreen(new LoadScreen(this));
 		PreferencesManager.incGameRuns();
 //		Gdx.app.log("game_runs", String.format("%d", PreferencesManager.getGameRuns()));
-		music = Gdx.audio.newMusic(Gdx.files.internal("sounds/theme.ogg"));
-		music.setLooping(true);
-		if (PreferencesManager.getSound()) {
-			music.play();
-		}
-		screen_menu = new MenuScreen(this);
-		screen_game = new GameScreen(this);
-		screen_character = new CharacterScreen(this);
-		this.setScreen("menu");
+
 	}
 
 	@Override
@@ -55,5 +48,12 @@ public class Eater extends Game {
 		} else {
 			this.setScreen(screen_character);
 		}
+	}
+	
+	public void onLoadInit() {
+		screen_menu = new MenuScreen(this);
+		screen_game = new GameScreen(this);
+		screen_character = new CharacterScreen(this);
+		this.setScreen("menu");
 	}
 }
