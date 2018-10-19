@@ -24,7 +24,6 @@ public class Eater extends Game {
 		this.setScreen(new LoadScreen(this));
 		PreferencesManager.incGameRuns();
 //		Gdx.app.log("game_runs", String.format("%d", PreferencesManager.getGameRuns()));
-
 	}
 
 	@Override

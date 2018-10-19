@@ -1,6 +1,5 @@
 package com.mygdx.eater.stages;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
@@ -18,6 +17,7 @@ import com.mygdx.eater.actors.menu.ResumeButton;
 import com.mygdx.eater.actors.menu.ScoreLabel;
 import com.mygdx.eater.actors.menu.SoundButton;
 import com.mygdx.eater.actors.menu.Window;
+import com.mygdx.eater.utils.Constants;
 import com.mygdx.eater.utils.GameState;
 import com.mygdx.eater.utils.PreferencesManager;
 
@@ -123,10 +123,10 @@ public class GameStage extends Stage {
         background = new Background(getWidth(), getHeight());
         addActor(background);
 
-        character = new Character(Gdx.graphics.getWidth()/5);
+        size = Constants.getSize(getWidth(), getHeight());
+        character = new Character(size*2);
         addActor(character);
 
-        size = (int) (getWidth() / 10);
 
         lbl_score = new ScoreLabel((int) (getWidth()/2 - size/2), (int) (getHeight()-size*2.5), size*2);
         addActor(lbl_score);
@@ -184,6 +184,7 @@ public class GameStage extends Stage {
         score = 0;
         hunger = 7;
         hunger_level.setLevel(hunger);
+        lbl_score.setScore(score);
         GameState.getInstance().init();
         GameState.getInstance().setSpeed(200);
     }
@@ -222,7 +223,7 @@ public class GameStage extends Stage {
     }
 
     private void createFood() {
-        Food food = new Food(size, (Gdx.graphics.getWidth()*2/5-size), character, new GameStage.IncrementScoreWrapper(), this);
+        Food food = new Food(size, (3*size), character, new GameStage.IncrementScoreWrapper(), this);
         addActor(food);
     }
 

@@ -13,7 +13,7 @@ public class Constants {
     private final static int[] BEAVER_SCORE = {3, 3, 2, 3, 2, 2, 2, 3, 2, 2, -5, -5, -10};
     private final static int[] RABBIT_SCORE = {3, 3, 2, 3, 2, 2, 2, 3, 2, 2, -5, -5, -10};
     private final static int[] ANDROID_SCORE = {3, 3, 2, 3, 2, 2, 2, 3, 2, 2, -5, -5, -10};
-    private final static int[][] FOOD_SCORE = {FACE_SCORE, VEGAN_SCORE, PIRATE_SCORE, BEAVER_SCORE, SKELETON_SCORE, RABBIT_SCORE, ANDROID_SCORE};
+    private final static int[][] FOOD_SCORE = {FACE_SCORE, VEGAN_SCORE, PIRATE_SCORE, SKELETON_SCORE, BEAVER_SCORE, RABBIT_SCORE, ANDROID_SCORE};
     private final static String[] CHARACTERS_DESCRIPTIONS = {
         "Just Steve. Eats edible, doesn't \neat inedible.",
         "Steve's brother. A vegetarian, \nbut eats animal foods.",
@@ -59,5 +59,16 @@ public class Constants {
         if (i < 0) i = 0;
         return FOOD_SCORE[i];
     }
+
+    public static int getSize(float width, float height) {
+        int w_size = (int) (width/10);
+        int h_size = (int) (height/19);
+        if (w_size > h_size) {
+            return h_size;
+        } else {
+            return w_size;
+        }
+    }
+
 
 }

@@ -42,7 +42,7 @@ public class CharacterScreen implements Screen {
         this.game = game;
         stage = new Stage(new ScreenViewport());
 
-        int size = (int) (stage.getWidth()/10);
+        int size = Constants.getSize(stage.getWidth(), stage.getHeight());
 
         MainMenuButton btn_main_menu = new MainMenuButton((int) (stage.getWidth()- size*1.5), (int) (stage.getHeight() - size*1.5), size, size, new CharacterScreen.MainMenuButtonListener());
         NextButton btn_next = new NextButton((int) (stage.getWidth()-size*1.75), (int) (size*0.25),(int) (size*1.5), (int) (size*1.5), new NextButtonListener());

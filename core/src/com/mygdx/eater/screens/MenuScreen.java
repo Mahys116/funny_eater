@@ -12,6 +12,7 @@ import com.mygdx.eater.actors.menu.CharacterView;
 import com.mygdx.eater.actors.menu.CharactersButton;
 import com.mygdx.eater.actors.menu.NewGameButton;
 import com.mygdx.eater.actors.menu.SoundButton;
+import com.mygdx.eater.utils.Constants;
 import com.mygdx.eater.utils.PreferencesManager;
 
 
@@ -27,7 +28,7 @@ public class MenuScreen implements Screen {
         this.game = game;
         stage = new Stage(new ScreenViewport());
 
-        size = (int) (stage.getWidth()/10);
+        size = Constants.getSize(stage.getWidth(), stage.getHeight());
 
         background = new Background(stage.getWidth(), stage.getHeight());
         stage.addActor(background);
