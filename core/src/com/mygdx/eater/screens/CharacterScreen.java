@@ -22,6 +22,8 @@ import java.util.ArrayList;
 public class CharacterScreen implements Screen {
     private final Eater game;
     private final Background background;
+    private final Label lbl_total;
+    private final Label lbl_score;
     public Stage stage;
     private final String[] character_names;
     private final String[] character_descriptions;
@@ -49,12 +51,11 @@ public class CharacterScreen implements Screen {
         PreviousButton btn_prev = new PreviousButton((int) (size*0.25),(int) (size*0.25),(int) (size*1.5), (int) (size*1.5), new PreviousButtonListener());
         btn_select = new CharacterSelectButton((int) (stage.getWidth()/2 - size * 1.614), 0, (int) (size * 1.614*2), size*2, new CharacterScreen.ChoseCharacterListener());
 
-        Label lbl_score = new Label(size, (int) (stage.getHeight()-3*size),"BEST: "+ String.format("%d", PreferencesManager.getHighScore()),size*3/4);
-        Label lbl_total = new Label(size, (int) (stage.getHeight()-4*size),"TOTAL: "+ String.format("%d", PreferencesManager.getTotalScore()),size*3/4);
+        lbl_score = new Label(size, (int) (stage.getHeight()-3*size),"BEST: "+ String.format("%d", PreferencesManager.getHighScore()),size*3/4);
+        lbl_total = new Label(size, (int) (stage.getHeight()-4*size),"TOTAL: "+ String.format("%d", PreferencesManager.getTotalScore()),size*3/4);
 
         lbl_score.setX(stage.getWidth()/2-lbl_score.getWidth()/2);
         lbl_total.setX(stage.getWidth()/2-lbl_total.getWidth()/2);
-
         lbl_character_name = new Label(size,(int) (stage.getHeight()-5*size),"",size);
         lbl_character_cond = new Label(size,(int) (stage.getHeight()-6*size),"",size*2/3);
         lbl_character_desc = new Label(size,(int) (stage.getHeight()-7*size),"",size/2);
@@ -118,7 +119,6 @@ public class CharacterScreen implements Screen {
 
     @Override
     public void resume() {
-
     }
 
     @Override
@@ -169,6 +169,7 @@ public class CharacterScreen implements Screen {
             current_name = characters[index];
             face.setCharacter(current_name);
             btn_select.setDisabled(!available_chracters.contains(current_name));
+//            btn_select.setDisabled(false);
             setCharacterDesc();
             if (available_chracters.contains(current_name)) {
                 lbl_character_cond.setColor(Color.WHITE);
@@ -195,5 +196,9 @@ public class CharacterScreen implements Screen {
             background.setBackgroundSprite(2);
         }
     }
-
+    public void initParams() {
+        updateBackground();
+        lbl_score.setText(String.format("BEST: %d", PreferencesManager.getHighScore()));
+        lbl_total.setText(String.format("TOTAL: %d", PreferencesManager.getTotalScore()));
+    }
 }

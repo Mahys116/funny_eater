@@ -45,6 +45,7 @@ public class Eater extends Game {
 			screen_game.stage.showGameMenu();
 			this.setScreen(screen_game);
 		} else {
+		    screen_character.initParams();
 			this.setScreen(screen_character);
 		}
 	}
