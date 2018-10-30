@@ -1,7 +1,5 @@
 package com.mygdx.eater.utils;
 
-import java.util.HashMap;
-
 public class Constants {
 //    private final static String[] CHARACTERS_NAME = {"face", "vegan", "pirate", "skeleton", "beaver", "rabbit", "android"};
     private final static String[] CHARACTERS_NAME = {"face", "vegan", "pirate", "skeleton"};

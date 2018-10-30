@@ -25,9 +25,9 @@ public class CharacterScreen implements Screen {
     private final Label lbl_total;
     private final Label lbl_score;
     public Stage stage;
-    private final String[] character_names;
-    private final String[] character_descriptions;
-    private final String[] character_conditions;
+    private String[] character_names;
+    private String[] character_descriptions;
+    private String[] character_conditions;
     private final CharacterSelectButton btn_select;
     private final Label lbl_character_name;
     private final Label lbl_character_cond;
@@ -81,14 +81,7 @@ public class CharacterScreen implements Screen {
         stage.addActor(lbl_character_cond);
         stage.addActor(lbl_character_desc);
 
-        current_name = PreferencesManager.getCharacterName();
-        characters = Constants.getCharacters();
-        character_names = Constants.getCharactersFullName();
-        character_descriptions = Constants.getCharactersDescriptions();
-        character_conditions = Constants.getCharactersConditions();
-        available_chracters = PreferencesManager.updateAvailableCharacters();
-        index = java.util.Arrays.asList(characters).indexOf(current_name);
-        setCharacterDesc();
+        initParams();
         face = new CharacterView(size*2, current_name, stage.getWidth()/2-size);
         stage.addActor(face);
     }
@@ -182,8 +175,10 @@ public class CharacterScreen implements Screen {
 
     public class ChoseCharacterListener implements CharacterSelectButton.ChoseCharacterListener {
         public void onChose() {
-            PreferencesManager.setCharacterName(current_name);
-            game.setScreen("menu");
+            if (available_chracters.contains(current_name)) {
+                PreferencesManager.setCharacterName(current_name);
+                game.setScreen("menu");
+            }
         }
     }
 
@@ -197,8 +192,17 @@ public class CharacterScreen implements Screen {
         }
     }
     public void initParams() {
-        updateBackground();
+        current_name = PreferencesManager.getCharacterName();
+        characters = Constants.getCharacters();
+        character_names = Constants.getCharactersFullName();
+        character_descriptions = Constants.getCharactersDescriptions();
+        character_conditions = Constants.getCharactersConditions();
+        available_chracters = PreferencesManager.updateAvailableCharacters();
+        index = java.util.Arrays.asList(characters).indexOf(current_name);
+        setCharacterDesc();
+
         lbl_score.setText(String.format("BEST: %d", PreferencesManager.getHighScore()));
         lbl_total.setText(String.format("TOTAL: %d", PreferencesManager.getTotalScore()));
+        updateBackground();
     }
 }
