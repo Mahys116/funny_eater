@@ -55,5 +55,10 @@ public class Eater extends Game {
 		screen_game = new GameScreen(this);
 		screen_character = new CharacterScreen(this);
 		this.setScreen("menu");
+        music = Gdx.audio.newMusic(Gdx.files.internal("sounds/theme.ogg"));
+        music.setLooping(true);
+        if (PreferencesManager.getSound()) {
+            music.play();
+        }
 	}
 }
